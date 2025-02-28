@@ -1,23 +1,23 @@
-use actix_cors::Cors;
-use actix_web::{App, HttpServer};
+mod config;
 
-use dotenv::dotenv;
-use std::env::var;
+use actix_cors::Cors;
+use actix_web::{cookie::time::format_description::well_known::iso8601::Config, App, HttpServer};
+use config::Env;
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    dotenv().ok();
+    let config = Env::env_init();
 
-    //env variables
-    let host = var("HOST").unwrap();
-    let port = var("PORT").unwrap();
+    let port = config.port;
+    let host = config.host;
 
-    //needed casts
-    let port = port.parse::<u16>().unwrap();
+    HttpServer::new(move || {
+        //TODO: change this to default and select the corresponded origin, methods and headers
+        let cors = Cors::permissive();
 
-    //TODO:Wrap the cors and the services
-    HttpServer::new(|| App::new())
-        .bind((host, port))?
-        .run()
-        .await
+        App::new().wrap(cors)
+    })
+    .bind((host, port))?
+    .run()
+    .await
 }

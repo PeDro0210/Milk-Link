@@ -7,13 +7,15 @@ RUN apk add --no-cache musl-dev
 
 COPY . .
 
+
 RUN cargo build --release
 
 
 EXPOSE 5000/tcp
 
 
-RUN ./target/release/Milk-Backend
+
+CMD RUST_BACKTRACE=1 && ./target/release/Milk-Backend
 
 
 
