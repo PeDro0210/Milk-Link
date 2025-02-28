@@ -3,14 +3,19 @@ services:
     build: ./Milk-Backend
     ports:
       - "5000:5000"
+    env_file:
+      - env_variables/milk-backend/.env
 
   webview:
     build: ./Milk-WebView
     ports:
       #TODO: Before deploying, do the port fowarding
       - "5173:5173"
-    #depends_on:
-      #  - backend
+    env_file:
+      - env_variables/milk-webview/.env
+    depends_on:
+      - backend
+
   redis:
     image: "redis:alpine"
     command:
@@ -20,7 +25,7 @@ services:
     volumes:
       - db:/var/lib/redis/data
     env_file:
-      - env_variables/.env
+      - env_variables/redis/.env
 
 networks:
   mynetwork:
