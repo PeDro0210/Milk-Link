@@ -1,19 +1,19 @@
-version: '3.9'
-
 services:
   backend:
-    build: ./Milk-Backend/
+    build: ./Milk-Backend
     ports:
       - "5000:5000"
-  webview:
-    build: ./fronted
-    ports:
-      - "5173:0080"
-    depends_on:
-      - backend
-  redis:
-    image:"redis:alpine"
 
+  webview:
+    build: ./Milk-WebView
+    ports:
+      # Before deploying, do the port fowarding
+      - "5173:5173"
+    #depends_on:
+      #  - backend
+  redis:
+    image: "redis:alpine"
+    #add redis volume 
 
 networks:
   mynetwork:
