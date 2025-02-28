@@ -7,13 +7,13 @@ services:
   webview:
     build: ./Milk-WebView
     ports:
-      # Before deploying, do the port fowarding
+      #TODO: Before deploying, do the port fowarding
       - "5173:5173"
     #depends_on:
       #  - backend
   redis:
     image: "redis:alpine"
-    #add redis volume 
+    #TODO: add redis volume 
 
 networks:
   mynetwork:
