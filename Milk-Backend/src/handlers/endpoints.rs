@@ -17,10 +17,9 @@ pub fn app_config(config: &mut web::ServiceConfig) {
 async fn graphiql() -> HttpResponse {
     let html = graphiql_source("/graphql", None);
 
-    println!("Graphiql called");
-    HttpResponse::Ok()
+    return HttpResponse::Ok()
         .content_type("text/html; charset=utf-8")
-        .body(html)
+        .body(html);
 }
 
 //For for accepting schemas
@@ -28,5 +27,5 @@ async fn graphql(data: web::Json<GraphQLRequest>, schema: web::Data<Schema>) -> 
     let context = Context {};
     let res = data.execute(&schema, &context).await;
 
-    HttpResponse::Ok().json(res)
+    return HttpResponse::Ok().json(res);
 }

@@ -12,9 +12,11 @@ pub struct Link {
 
 pub fn dummy_link() -> Link {
     return Link {
-        link: "".to_string(),
-        icon_url: "".to_string(),
-        image_url: "".to_string(),
-        text: "".to_string(),
+        link: "youtube.com".to_string(),
+        icon_url: "https://cdn.staticneo.com/w/streetfighter/thumb/Sakura.jpg/250px-Sakura.jpg"
+            .to_string(),
+        image_url: "https://cdn.staticneo.com/w/streetfighter/thumb/Sakura.jpg/250px-Sakura.jpg"
+            .to_string(),
+        text: "Sakura".to_string(),
     };
 }

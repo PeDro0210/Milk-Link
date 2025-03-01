@@ -27,7 +27,6 @@ pub struct Query {}
 impl Query {
     //Add error type safety
     pub async fn get_links(context: &Context) -> Vec<Link> {
-        print!("links submitted");
         return context.link_repo().get_links().await;
     }
 }
@@ -39,5 +38,5 @@ pub fn create_schema() -> web::Data<Schema> {
     let schema = RootNode::new(Query {}, EmptyMutation::new(), EmptySubscription::new());
 
     // I always need for passing the squema to actix
-    web::Data::new(schema)
+    return web::Data::new(schema);
 }
