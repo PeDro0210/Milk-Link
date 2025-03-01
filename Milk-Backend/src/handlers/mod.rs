@@ -1,1 +1,2 @@
-mod general;
+pub mod endpoints;
+mod graphql;
