@@ -1,7 +1,7 @@
 <script lang="ts">
   import close_button from "../../assets/icon_buttons/close_icon.svg";
   import minimize_button from "../../assets/icon_buttons/minimize_icon.svg";
-  import WindowButton from "./window_button.svelte";
+  import WindowButton from "./compontents/window_button.svelte";
 
   export let text;
   export let img_content;

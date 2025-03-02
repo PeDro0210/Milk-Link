@@ -2,12 +2,12 @@
   export let icon;
 </script>
 
-<div class="appbar-button" aria-label="icon-button">
+<button aria-label="icon-button">
   <img class="icon-image" src={icon} alt="icon of the button" />
-</div>
+</button>
 
 <style lang="scss">
-  .appbar-button {
+  button {
     /* minimize-button */
 
     box-sizing: border-box;
