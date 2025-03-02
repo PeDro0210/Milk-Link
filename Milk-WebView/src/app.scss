@@ -24,10 +24,18 @@ body {
 }
 
 #app {
+  display: flex;
+  place-items: center;
+  justify-content: center;
   min-height: 100vh;
   min-width: 100vw;
   margin: 0 auto;
 
+  background: url(assets/background.svg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 
   a {
     font-weight: 500;
@@ -59,6 +67,12 @@ body {
     position: fixed;
     bottom: 0;
     left: 0;
+  }
+
+  main {
+    display: grid;
+    grid-template-columns: repeat(5, 350px);
+    grid-template-rows: 350px;
   }
 
   @media (prefers-color-scheme: light) {

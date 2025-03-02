@@ -11,6 +11,9 @@
 <main>
   <VaporwaveWindow text={"SAKURA"} img_content={url} />
   <VaporwaveWindow text={"SAKURA"} img_content={second_url} />
+  <VaporwaveWindow text={"SAKURA"} img_content={second_url} />
+  <VaporwaveWindow text={"SAKURA"} img_content={url} />
+  <VaporwaveWindow text={"SAKURA"} img_content={second_url} />
 </main>
 
 <footer>
