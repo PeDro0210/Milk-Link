@@ -2,7 +2,7 @@
 </script>
 
 <div class="separator">
-  <!-- Ignore the error LMAO-->
+  <!-- Ignore the warning LMAO-->
   <separator-line />
 </div>
 
@@ -14,7 +14,7 @@
     align-items: center;
     padding: 0px;
 
-    width: 2px;
+    width: 5px;
     height: 36px;
 
     /* Inside auto layout */

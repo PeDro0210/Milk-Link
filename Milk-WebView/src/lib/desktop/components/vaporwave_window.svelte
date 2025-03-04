@@ -1,22 +1,21 @@
 <script lang="ts">
   //TODO: make this a grabable
-  import close_button from "../../assets/icon_buttons/close_icon.svg";
-  import minimize_button from "../../assets/icon_buttons/minimize_icon.svg";
+  import close_button from "../../../assets/icon_buttons/close_icon.svg";
+  import minimize_button from "../../../assets/icon_buttons/minimize_icon.svg";
   import WindowButton from "./compontents/window_button.svelte";
 
-  export let text;
-  export let img_content;
+  export let text: string;
+  export let img_content: string;
 </script>
 
 <div class="window">
   <div class="app-bar">
-    <h2>{text}</h2>
+    <text>{text}</text>
     <div class="button-row">
       <WindowButton icon={minimize_button} />
       <WindowButton icon={close_button} />
     </div>
   </div>
-
   <img class="content" src={img_content} alt="img for the content side" />
 </div>
 
@@ -83,9 +82,10 @@
         flex-grow: 0;
       }
 
-      h2 {
+      text {
         width: 70%;
         text-align: left;
+        font-size: 2.2em;
       }
     }
 

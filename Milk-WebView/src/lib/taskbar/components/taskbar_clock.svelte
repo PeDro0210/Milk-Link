@@ -1,7 +1,42 @@
 <script lang="ts">
+  import "../utils/general.scss";
+  //Let's also make this the stateless side
+  const time = new Date().toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+  console.log(time);
 </script>
 
-<div></div>
+<clock>
+  <text>{time}</text>
+</clock>
 
 <style lang="scss">
+  /* taskbar-clock */
+  //This will be pretty static ngl
+  clock {
+    box-sizing: border-box;
+
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: 20px;
+
+    width: 128px;
+    height: 36px;
+
+    background: linear-gradient(90deg, #a33638 0%, #542738 100%);
+    border-width: 0px 1px 1px 0px;
+    border-style: solid;
+    border-color: #3a3a3a;
+
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+  }
 </style>
