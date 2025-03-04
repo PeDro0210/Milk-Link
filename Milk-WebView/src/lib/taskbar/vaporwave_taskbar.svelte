@@ -1,17 +1,22 @@
 <script lang="ts">
+  import Separator from "./components/separator.svelte";
+  import TaskbarStart from "./components/taskbar_start.svelte";
 </script>
 
-<div class="taskbar"></div>
+<div class="taskbar">
+  <TaskbarStart />
+  <Separator />
+  <div class=""></div>
+</div>
 
 <style lang="scss">
   .taskbar {
-    /* TaskBar */
-
     /* Auto layout */
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
-    padding: 10px 5px;
+    align-items: center;
+
+    padding: 10px 10px;
     gap: 13px;
 
     position: relative;

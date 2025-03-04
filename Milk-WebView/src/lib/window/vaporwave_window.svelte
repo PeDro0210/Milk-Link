@@ -1,4 +1,5 @@
 <script lang="ts">
+  //TODO: make this a grabable
   import close_button from "../../assets/icon_buttons/close_icon.svg";
   import minimize_button from "../../assets/icon_buttons/minimize_icon.svg";
   import WindowButton from "./compontents/window_button.svelte";
@@ -30,7 +31,7 @@
     padding: 5px 6px 9px;
     gap: 5px;
 
-    position: relative;
+    position: fixed;
 
     width: 260px;
     height: 262px;

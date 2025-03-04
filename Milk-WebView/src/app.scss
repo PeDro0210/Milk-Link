@@ -37,6 +37,17 @@ body {
   -o-background-size: cover;
   background-size: cover;
 
+  button {
+    border-width: 0px 1px 1px 0px;
+    border-style: solid;
+    border-color: #3a3a3a;
+
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+  }
+
   a {
     font-weight: 500;
     color: #646cff;
@@ -69,11 +80,6 @@ body {
     left: 0;
   }
 
-  main {
-    display: grid;
-    grid-template-columns: repeat(5, 350px);
-    grid-template-rows: 350px;
-  }
 
   @media (prefers-color-scheme: light) {
     a:hover {

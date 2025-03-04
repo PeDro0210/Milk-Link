@@ -24,14 +24,6 @@
     height: 24px;
 
     background: #0e0f14;
-    border-width: 0px 1px 1px 0px;
-    border-style: solid;
-    border-color: #3a3a3a;
     box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.25);
-
-    /* Inside auto layout */
-    flex: none;
-    order: 0;
-    flex-grow: 0;
   }
 </style>
