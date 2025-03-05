@@ -1,21 +1,26 @@
 <script lang="ts">
-  //TODO: make this a grabable
   import close_button from "../../../assets/icon_buttons/close_icon.svg";
   import minimize_button from "../../../assets/icon_buttons/minimize_icon.svg";
   import WindowButton from "./compontents/window_button.svelte";
 
-  let { text, img_content } = $props();
+  let { text, img_content, key } = $props();
 
   //TODO: change the values of the initial state
-  let x_position = $state(0);
-  let y_position = $state(0);
+  let x_position = $state(
+    window.localStorage.getItem("positionX" + key) ?? -750 + 150 * key,
+  );
+  let y_position = $state(
+    window.localStorage.getItem("positionY" + key) ?? -200 + 5 * key,
+  );
 
   let appbar_grab = false;
 
   function move_window(e: any) {
     if (appbar_grab) {
-      y_position += e.movementY;
       x_position += e.movementX;
+      y_position += e.movementY;
+      window.localStorage.setItem("positionX" + key, x_position.toString());
+      window.localStorage.setItem("positionY" + key, y_position.toString());
     }
   }
 

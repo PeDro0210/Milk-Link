@@ -42,7 +42,7 @@
 
       /* Inside auto layout */
       flex: none;
-      order: 0;
+      order: 1;
       flex-grow: 0;
     }
   }
