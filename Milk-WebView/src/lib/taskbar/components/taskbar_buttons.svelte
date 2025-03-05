@@ -1,8 +1,6 @@
 <script lang="ts">
   import "../utils/general.scss";
-  export let icon_url: string;
-  export let text: string | null;
-  export let width: string | null;
+  let { icon_url, text, width } = $props();
 </script>
 
 <button aria-label="takbar-button" style="--width:{width ?? '256px'}">

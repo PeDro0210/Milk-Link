@@ -1,6 +1,3 @@
-<script lang="ts">
-</script>
-
 <div class="separator">
   <!-- Ignore the warning LMAO-->
   <separator-line />
