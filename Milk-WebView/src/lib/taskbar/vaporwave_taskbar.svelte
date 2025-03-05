@@ -8,7 +8,16 @@
   } from "./utils/constant";
   import TaskbarClock from "./components/taskbar_clock.svelte";
 
-  //TODO: manage all the reactivity in here and in the state_handlers
+  //TODO: manage all the reactivity in here
+
+  let time: Date = $state(new Date());
+
+  $effect(() => {
+    setInterval(() => {
+      time = new Date();
+      console.log(time);
+    }, 6000);
+  });
 
   //! This is mostly debugging code
 
@@ -49,7 +58,7 @@
 
   <Separator />
 
-  <TaskbarClock />
+  <TaskbarClock {time} />
 </div>
 
 <style lang="scss">

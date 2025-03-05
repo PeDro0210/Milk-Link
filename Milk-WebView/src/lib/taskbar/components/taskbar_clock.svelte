@@ -1,15 +1,21 @@
 <script lang="ts">
   import "../utils/general.scss";
   //Let's also make this the stateless side
-  const time = new Date().toLocaleTimeString([], {
-    hour: "2-digit",
-    minute: "2-digit",
-  });
-  console.log(time);
+  let { time } = $props();
+
+  let new_time_casted: string = $state("");
+
+  $effect(
+    () =>
+      (new_time_casted = time.toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+      })),
+  );
 </script>
 
 <clock>
-  <text>{time}</text>
+  <text>{new_time_casted}</text>
 </clock>
 
 <style lang="scss">
