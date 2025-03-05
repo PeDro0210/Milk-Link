@@ -4,18 +4,60 @@
   import minimize_button from "../../../assets/icon_buttons/minimize_icon.svg";
   import WindowButton from "./compontents/window_button.svelte";
 
-  export let text: string;
-  export let img_content: string;
+  let { text, img_content } = $props();
+
+  //TODO: change the values of the initial state
+  let x_position = $state(0);
+  let y_position = $state(0);
+
+  let appbar_grab = false;
+
+  function move_window(e: any) {
+    if (appbar_grab) {
+      y_position += e.movementY;
+      x_position += e.movementX;
+    }
+  }
+
+  function move_to_front(e: any) {
+    //! this is not a good practice, is not good for a higher abstraction to be messing with the DOM directly
+    let all_windows = document.querySelectorAll(
+      ".window",
+    ) as NodeListOf<HTMLElement>;
+
+    all_windows.forEach((win) => {
+      win.style.zIndex = "0";
+    });
+
+    e.currentTarget.style.zIndex = "10";
+  }
 </script>
 
-<div class="window">
-  <div class="app-bar">
+<svelte:window
+  onmouseup={() => {
+    appbar_grab = false;
+  }}
+  onmousemove={move_window}
+/>
+
+<div
+  class="window"
+  style="transform: translate({x_position}px,{y_position}px);"
+  onclick={move_to_front}
+>
+  <!-- the button is or making the compiler happy-->
+  <button
+    class="app-bar"
+    onmousedown={() => {
+      appbar_grab = true;
+    }}
+  >
     <text>{text}</text>
     <div class="button-row">
       <WindowButton icon={minimize_button} />
       <WindowButton icon={close_button} />
     </div>
-  </div>
+  </button>
   <img class="content" src={img_content} alt="img for the content side" />
 </div>
 
@@ -44,6 +86,7 @@
     .app-bar {
       /* little-window-bar */
 
+      user-select: none;
       /* Auto layout */
       display: flex;
       flex-direction: row;
@@ -51,7 +94,7 @@
       align-items: center;
       padding: 0px 10px;
 
-      width: 92%;
+      width: 100%;
       height: 10%;
 
       background: linear-gradient(90deg, #a33638 9%, #542738 100%);
