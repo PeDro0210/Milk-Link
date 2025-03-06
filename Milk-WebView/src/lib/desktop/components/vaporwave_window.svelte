@@ -17,10 +17,21 @@
 
   function move_window(e: any) {
     if (appbar_grab) {
-      x_position += e.movementX;
-      y_position += e.movementY;
-      window.localStorage.setItem("positionX" + key, x_position.toString());
-      window.localStorage.setItem("positionY" + key, y_position.toString());
+      //The cool middle man
+      let _x_pos = parseInt(x_position as string);
+      let _y_pos = parseInt(y_position as string);
+      //the cool middle man
+
+      _x_pos += e.movementX;
+      _y_pos += e.movementY;
+
+      //deparsing
+      x_position = _x_pos.toString();
+      y_position = _y_pos.toString();
+      //deparsing
+
+      window.localStorage.setItem("positionX" + key, _x_pos.toString());
+      window.localStorage.setItem("positionY" + key, _y_pos.toString());
     }
   }
 
