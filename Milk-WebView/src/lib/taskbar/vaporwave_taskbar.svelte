@@ -7,16 +7,44 @@
     start_button_attributes,
   } from "./utils/constant";
   import TaskbarClock from "./components/taskbar_clock.svelte";
+  import { onMount } from "svelte";
 
   //TODO: manage all the reactivity in here
 
-  let time: Date = $state(new Date());
+  //Global Constant
+  let global_innerWidth = window.innerWidth - 350 + "px";
 
+  //The reactivity GRAWWWWWW
+  let time: Date = $state(new Date());
+  let _innerWidth = $state("");
+
+  let windowResizing = (width: string) => {
+    let window_side = document.querySelector(".windows-side") as HTMLElement;
+    window_side.style.setProperty("--window-width", _innerWidth);
+  };
+
+  onMount(() => {
+    _innerWidth = window.innerWidth - 350 + "px";
+    windowResizing(_innerWidth);
+  });
+
+  //Managing the date for the clock
   $effect(() => {
     setInterval(() => {
       time = new Date();
       console.log(time);
     }, 6000);
+  });
+
+  //THis is still not the best option, is a pretty inscure way to managing the DOM
+  //Managing the resizing of the window-sidebar
+  $effect(() => {
+    const updateWidth = () => {
+      _innerWidth = window.innerWidth - 350 + "px"; // Adjust the width calculation as needed
+      windowResizing(_innerWidth);
+    };
+
+    window.addEventListener("resize", updateWidth);
   });
 
   //! This is mostly debugging code
@@ -88,8 +116,8 @@
     gap: 10px;
     overflow-x: auto;
 
-    width: 75%;
-    height: 56px;
+    width: var(--window-width, 80%);
+    width: var(--window-width, 0);
 
     /* Inside auto layout */
     flex: none;
