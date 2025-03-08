@@ -1,4 +1,5 @@
 <script lang="ts">
+  import VaporwaveStartmenu from "../startmenu/vaporwave_startmenu.svelte";
   import VaporwaveWindow from "./components/vaporwave_window.svelte";
 
   let url: string =

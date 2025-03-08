@@ -1,20 +1,5 @@
 <script lang="ts">
   import LinkButtons from "./components/link_buttons.svelte";
-  import { icon_placeholder_url } from "../taskbar/utils/constant";
-  import type { TaskbarButton } from "../taskbar/utils/interfaces";
-
-  //! Just for debugging
-  let dummy_link_buttons: TaskbarButton[] = [];
-
-  let window_buttons: TaskbarButton = {
-    icon: icon_placeholder_url,
-    text: null,
-    width: null,
-  };
-
-  for (let i = 0; i <= 30; i++) {
-    dummy_link_buttons.push(window_buttons);
-  }
 </script>
 
 <div id="start-menu">
@@ -22,9 +7,7 @@
     <text>Pedro's Link</text>
   </div>
   <div id="content-side">
-    {#each dummy_link_buttons as button}
-      <LinkButtons icon_url={button.icon} text={window_buttons.text} />
-    {/each}
+    <LinkButtons />
   </div>
 </div>
 
@@ -42,17 +25,10 @@
     gap: 10px;
     align-items: center;
 
-    margin-right: -100px;
-
     //TODO: change this to other position
-    position: absolute;
+    position: relative;
     width: 271px;
     height: 642px;
-
-    top: 40px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
 
     background: #0e0f14;
     border-right: 2px solid #3a3a3a;
@@ -101,11 +77,9 @@
     padding: 0px;
     gap: 2px;
 
-    overflow-y: auto;
-    scrollbar-width: none;
-    width: 83%;
+    width: 156px;
     //This ain't a good practice
-    height: 101.5%;
+    height: 102%;
 
     /* Inside auto layout */
     flex: none;

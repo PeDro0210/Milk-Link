@@ -20,7 +20,7 @@
     padding: 0px 0px 0px 5px;
     gap: 10px;
 
-    width: 128px;
+    width: 256px;
     height: 36px;
 
     width: var(--width);

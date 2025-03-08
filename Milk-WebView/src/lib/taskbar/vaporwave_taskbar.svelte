@@ -36,7 +36,7 @@
     }, 6000);
   });
 
-  //THis is still not the best option, is a pretty inscure way to managing the DOM
+  //His is still not the best option, is a pretty inscure way to managing the DOM
   //Managing the resizing of the window-sidebar
   $effect(() => {
     const updateWidth = () => {
@@ -60,11 +60,9 @@
   for (let i = 0; i <= 10; i++) {
     dummy_window_buttons.push(window_buttons);
   }
-
-  //! This is mostly debugging code
 </script>
 
-<div class="taskbar">
+<div id="taskbar">
   <TaskbarButtons
     icon_url={icon_placeholder_url}
     width={start_button_attributes.width}
@@ -90,11 +88,13 @@
 </div>
 
 <style lang="scss">
-  .taskbar {
+  #taskbar {
     /* Auto layout */
     display: flex;
     flex-direction: row;
     align-items: center;
+
+    z-index: 10;
 
     padding: 10px 10px;
     gap: 13px;
@@ -114,7 +114,9 @@
     align-items: center;
     padding: 0px;
     gap: 10px;
+
     overflow-x: auto;
+    scrollbar-width: none;
 
     width: var(--window-width, 80%);
     width: var(--window-width, 0);

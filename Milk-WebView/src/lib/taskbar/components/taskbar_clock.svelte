@@ -15,15 +15,16 @@
   );
 </script>
 
-<clock>
+<div id="clock">
   <text>{new_time_casted}</text>
-</clock>
+</div>
 
 <style lang="scss">
   /* taskbar-clock */
   //This will be pretty static ngl
-  clock {
+  #clock {
     box-sizing: border-box;
+    user-select: none;
 
     /* Auto layout */
     display: flex;

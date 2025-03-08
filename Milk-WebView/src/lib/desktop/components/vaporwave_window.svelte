@@ -5,12 +5,14 @@
 
   let { text, img_content, key } = $props();
 
-  //TODO: change the values of the initial state
-  let x_position = $state(
-    window.localStorage.getItem("positionX" + key) ?? -750 + 150 * key,
+  let x_position: string = $state(
+    window.localStorage.getItem("positionX" + key) ??
+      (-750 + 150 * key).toString(),
   );
-  let y_position = $state(
-    window.localStorage.getItem("positionY" + key) ?? -200 + 5 * key,
+
+  let y_position: string = $state(
+    window.localStorage.getItem("positionY" + key) ??
+      (-200 + 5 * key).toString(),
   );
 
   let appbar_grab = false;
@@ -18,9 +20,8 @@
   function move_window(e: any) {
     if (appbar_grab) {
       //The cool middle man
-      let _x_pos = parseInt(x_position as string);
-      let _y_pos = parseInt(y_position as string);
-      //the cool middle man
+      let _x_pos = parseInt(x_position);
+      let _y_pos = parseInt(y_position);
 
       _x_pos += e.movementX;
       _y_pos += e.movementY;
@@ -28,7 +29,6 @@
       //deparsing
       x_position = _x_pos.toString();
       y_position = _y_pos.toString();
-      //deparsing
 
       window.localStorage.setItem("positionX" + key, _x_pos.toString());
       window.localStorage.setItem("positionY" + key, _y_pos.toString());
@@ -45,7 +45,7 @@
       win.style.zIndex = "0";
     });
 
-    e.currentTarget.style.zIndex = "10";
+    e.currentTarget.style.zIndex = "1";
   }
 </script>
 
@@ -62,7 +62,7 @@
   onclick={move_to_front}
 >
   <!-- the button is or making the compiler happy-->
-  <button
+  <div
     class="app-bar"
     onmousedown={() => {
       appbar_grab = true;
@@ -73,7 +73,7 @@
       <WindowButton icon={minimize_button} />
       <WindowButton icon={close_button} />
     </div>
-  </button>
+  </div>
   <img class="content" src={img_content} alt="img for the content side" />
 </div>
 
@@ -110,7 +110,7 @@
       align-items: center;
       padding: 0px 10px;
 
-      width: 100%;
+      width: 92%;
       height: 10%;
 
       background: linear-gradient(90deg, #a33638 9%, #542738 100%);
@@ -119,6 +119,10 @@
       flex: none;
       order: 0;
       flex-grow: 0;
+
+      &:active {
+        cursor: pointer;
+      }
 
       .button-row {
         /* button-row */
