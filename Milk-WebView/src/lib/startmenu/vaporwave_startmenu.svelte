@@ -12,7 +12,7 @@
     width: null,
   };
 
-  for (let i = 0; i <= 30; i++) {
+  for (let i = 0; i <= 10; i++) {
     dummy_link_buttons.push(window_buttons);
   }
 </script>
@@ -43,6 +43,8 @@
 
     width: 271px;
     height: 75vh; //For adapting to the screen, not the parent-element
+
+    pointer-events: auto;
 
     background: #0e0f14;
     border-right: 2px solid #3a3a3a;

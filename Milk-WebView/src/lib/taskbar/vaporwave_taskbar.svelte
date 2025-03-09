@@ -94,14 +94,14 @@
     flex-direction: row;
     align-items: center;
 
-    z-index: 10;
-
     padding: 10px 10px;
     gap: 13px;
 
     position: relative;
     width: 100%;
     height: 56px;
+
+    pointer-events: auto;
 
     background: #0e0f14;
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);

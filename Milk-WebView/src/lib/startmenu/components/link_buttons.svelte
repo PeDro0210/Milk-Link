@@ -19,7 +19,7 @@
     gap: 10px;
 
     width: 100%;
-    height: 36px;
+    height: 56px;
 
     background: linear-gradient(90deg, #a33638 0%, #542738 100%);
     border-bottom: 2px solid #3a3a3a;
@@ -56,7 +56,7 @@
       font-family: "Jersey 10";
       font-style: normal;
       font-weight: 400;
-      font-size: 16px;
+      font-size: 32px;
       line-height: 17px;
       display: flex;
       align-items: center;

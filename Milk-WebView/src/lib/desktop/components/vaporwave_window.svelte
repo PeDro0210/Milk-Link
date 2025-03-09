@@ -93,6 +93,8 @@
     width: 260px;
     height: 262px;
 
+    z-index: 0;
+
     background: #0e0f14;
     border-width: 0px 2px 2px 0px;
     border-style: solid;
