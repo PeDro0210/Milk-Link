@@ -37,6 +37,8 @@ body {
   -o-background-size: cover;
   background-size: cover;
 
+  overflow: none;
+
   button {
     border-width: 0px 1px 1px 0px;
     border-style: solid;
@@ -91,15 +93,6 @@ body {
   }
 
 
-  @media (prefers-color-scheme: light) {
-    a:hover {
-      color: #747bff;
-    }
-
-    button {
-      background-color: #f9f9f9;
-    }
-  }
 
 }
 

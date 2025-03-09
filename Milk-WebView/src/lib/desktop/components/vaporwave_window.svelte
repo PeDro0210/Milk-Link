@@ -59,7 +59,7 @@
 <div
   class="window"
   style="transform: translate({x_position}px,{y_position}px);"
-  onclick={move_to_front}
+  onmouseup={move_to_front}
 >
   <!-- the button is or making the compiler happy-->
   <div

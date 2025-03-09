@@ -24,7 +24,7 @@
   };
 
   onMount(() => {
-    _innerWidth = window.innerWidth - 335 + "px";
+    _innerWidth = window.innerWidth - 350 + "px";
     windowResizing(_innerWidth);
   });
 
@@ -40,7 +40,7 @@
   //Managing the resizing of the window-sidebar
   $effect(() => {
     const updateWidth = () => {
-      _innerWidth = window.innerWidth - 335 + "px"; // Adjust the width calculation as needed
+      _innerWidth = window.innerWidth - 350 + "px"; // Adjust the width calculation as needed
       windowResizing(_innerWidth);
     };
 
@@ -102,12 +102,13 @@
     height: 56px;
 
     pointer-events: auto;
+    scroll-behavior: auto;
 
     background: #0e0f14;
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
   }
 
-  .windows-side {
+  #windows-side {
     /* Auto layout */
     display: flex;
     flex-direction: row;
@@ -115,12 +116,10 @@
     padding: 0px;
     gap: 10px;
 
-    scrollbar-color: #542738 #0e0f14;
-    scrollbar-width: thin;
+    overflow-x: auto;
+    scrollbar-width: 1px;
 
-    overflow-x: scroll;
-    pointer-events: auto;
-
+    width: var(--window-width, 80%);
     width: var(--window-width, 0);
 
     /* Inside auto layout */
