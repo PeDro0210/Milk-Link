@@ -8,19 +8,17 @@
   } from "./utils/constant";
   import TaskbarClock from "./components/taskbar_clock.svelte";
   import { onMount } from "svelte";
+  import { global_state } from "../../handlers/global_state.svelte";
 
-  //TODO: manage all the reactivity in here
-
-  //Global Constant
-  let global_innerWidth = window.innerWidth - 350 + "px";
+  //TODO: move part of this reactivity to the handlers
 
   //The reactivity GRAWWWWWW
   let time: Date = $state(new Date());
-  let _innerWidth = $state("");
+  let _innerWidth: string = $state("");
 
   let windowResizing = (width: string) => {
     let window_side = document.querySelector(".windows-side") as HTMLElement;
-    window_side.style.setProperty("--window-width", _innerWidth);
+    window_side.style.setProperty("--window-width", width);
   };
 
   onMount(() => {
@@ -36,7 +34,7 @@
     }, 6000);
   });
 
-  //His is still not the best option, is a pretty inscure way to managing the DOM
+  //His is still not the best option, is a pretty inscure way to listening the DOM
   //Managing the resizing of the window-sidebar
   $effect(() => {
     const updateWidth = () => {
@@ -67,17 +65,19 @@
     icon_url={icon_placeholder_url}
     width={start_button_attributes.width}
     text={start_button_attributes.text}
+    on_click_function={global_state.toggle}
   />
 
   <Separator />
 
   <div class="windows-side">
-    <!--TODO: Change the list to the real deal-->
+    <!--TODO: Change the list to the real deal and add the correct functions-->
     {#each dummy_window_buttons as button}
       <TaskbarButtons
         icon_url={button.icon}
         width={button.width}
         text={button.text}
+        on_click_function={() => {}}
       />
     {/each}
   </div>

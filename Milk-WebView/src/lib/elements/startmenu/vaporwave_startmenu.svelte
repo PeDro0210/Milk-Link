@@ -2,6 +2,10 @@
   import LinkButtons from "./components/link_buttons.svelte";
   import { icon_placeholder_url } from "../taskbar/utils/constant";
   import type { TaskbarButton } from "../taskbar/utils/interfaces";
+  import { slide } from "svelte/transition";
+  import { global_state } from "../../handlers/global_state.svelte";
+
+  let options = { duration: 50, x: "75vh" };
 
   //! Just for debugging
   let dummy_link_buttons: TaskbarButton[] = [];
@@ -17,16 +21,18 @@
   }
 </script>
 
-<div id="start-menu">
-  <div id="title-bar">
-    <text>Pedro's Link</text>
+{#if !global_state.slide_start_menu}
+  <div id="start-menu" transition:slide={options}>
+    <div id="title-bar">
+      <text>Pedro's Link</text>
+    </div>
+    <div id="content-side">
+      {#each dummy_link_buttons as button}
+        <LinkButtons icon_url={button.icon} text={window_buttons.text} />
+      {/each}
+    </div>
   </div>
-  <div id="content-side">
-    {#each dummy_link_buttons as button}
-      <LinkButtons icon_url={button.icon} text={window_buttons.text} />
-    {/each}
-  </div>
-</div>
+{/if}
 
 <style lang="scss">
   #start-menu {

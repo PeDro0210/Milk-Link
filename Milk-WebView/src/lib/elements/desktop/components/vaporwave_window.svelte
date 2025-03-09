@@ -1,6 +1,6 @@
 <script lang="ts">
-  import close_button from "../../../assets/icon_buttons/close_icon.svg";
-  import minimize_button from "../../../assets/icon_buttons/minimize_icon.svg";
+  import close_button from "../../../../assets/icon_buttons/close_icon.svg";
+  import minimize_button from "../../../../assets/icon_buttons/minimize_icon.svg";
   import WindowButton from "./compontents/window_button.svelte";
 
   let { text, img_content, key } = $props();
@@ -12,16 +12,16 @@
 
   let y_position: string = $state(
     window.localStorage.getItem("positionY" + key) ??
-      (-200 + 5 * key).toString(),
+      (-300 + 20 * key).toString(),
   );
 
-  let appbar_grab = false;
+  let appbar_grab: boolean = false;
 
   function move_window(e: any) {
     if (appbar_grab) {
       //The cool middle man
-      let _x_pos = parseInt(x_position);
-      let _y_pos = parseInt(y_position);
+      let _x_pos: number = parseInt(x_position);
+      let _y_pos: number = parseInt(y_position);
 
       _x_pos += e.movementX;
       _y_pos += e.movementY;

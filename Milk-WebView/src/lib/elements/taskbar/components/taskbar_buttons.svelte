@@ -1,9 +1,13 @@
 <script lang="ts">
   import "../utils/general.scss";
-  let { icon_url, text, width } = $props();
+  let { icon_url, text, width, on_click_function } = $props();
 </script>
 
-<button aria-label="takbar-button" style="--width:{width ?? '256px'}">
+<button
+  aria-label="takbar-button"
+  style="--width:{width ?? '256px'}"
+  onclick={on_click_function}
+>
   <img class="icon-image" src={icon_url} alt="icon of the button" />
   <text>{text ?? "PLACEHOLDER"}</text>
 </button>
