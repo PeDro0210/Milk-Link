@@ -40,19 +40,9 @@
     align-items: flex-start;
     padding: 10px 10px 10px 10px;
     gap: 10px;
-    align-items: center;
 
-    margin-right: -100px;
-
-    //TODO: change this to other position
-    position: absolute;
     width: 271px;
-    height: 642px;
-
-    top: 40px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
+    height: 75vh; //For adapting to the screen, not the parent-element
 
     background: #0e0f14;
     border-right: 2px solid #3a3a3a;

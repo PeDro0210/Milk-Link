@@ -78,7 +78,10 @@ body {
 
 
   /*Fuck mutli position or idunno the name of the shit*/
-  footer {
+  ui {
+    //This is just for the fucking start-menu
+    display: flex;
+    flex-direction: column;
     width: 100%;
     position: fixed;
     bottom: 0;

@@ -6,9 +6,9 @@
 
 <main>
   <VaporwaveDesktop />
-  <VaporwaveStartmenu />
 </main>
 
-<footer>
+<ui>
+  <VaporwaveStartmenu />
   <VaporwaveTaskbar />
-</footer>
+</ui>
