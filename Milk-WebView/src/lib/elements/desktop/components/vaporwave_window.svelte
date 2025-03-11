@@ -27,9 +27,10 @@
   let appbar_grab: boolean = $state(false);
 
   $effect(() => {
+    console.log(show_error_pop_up);
     setTimeout(() => {
       show_error_pop_up = false;
-    }, 6000);
+    }, 3000);
   });
 
   function move_window(e: any) {

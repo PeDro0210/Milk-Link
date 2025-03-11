@@ -34,7 +34,7 @@
     }, 6000);
   });
 
-  //His is still not the best option, is a pretty inscure way to listening the DOM
+  //this is still not the best option, is a pretty inscure way to listening the DOM
   //Managing the resizing of the window-sidebar
   $effect(() => {
     const updateWidth = () => {
@@ -95,7 +95,7 @@
     align-items: center;
 
     padding: 10px 10px;
-    gap: 13px;
+    gap: 0px;
 
     position: relative;
     width: 100%;

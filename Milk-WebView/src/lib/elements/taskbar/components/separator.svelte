@@ -14,6 +14,8 @@
     width: 5px;
     height: 36px;
 
+    margin: 10px;
+
     /* Inside auto layout */
     flex: none;
     order: 1;
