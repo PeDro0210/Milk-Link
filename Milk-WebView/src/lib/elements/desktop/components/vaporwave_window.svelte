@@ -1,9 +1,18 @@
 <script lang="ts">
   import close_button from "../../../../assets/icon_buttons/close_icon.svg";
   import minimize_button from "../../../../assets/icon_buttons/minimize_icon.svg";
+  import ErrorPopUp from "./compontents/error_pop_up.svelte";
   import WindowButton from "./compontents/window_button.svelte";
 
-  let { text, img_content, key } = $props();
+  let {
+    text,
+    img_content,
+    key,
+  }: { text: string; img_content: string; key: number } = $props();
+
+  let show_error_pop_up: boolean = $state(false);
+
+  let error_pop_up_options = { duration: 100 };
 
   let x_position: string = $state(
     window.localStorage.getItem("positionX" + key) ??
@@ -15,7 +24,13 @@
       (-300 + 20 * key).toString(),
   );
 
-  let appbar_grab: boolean = false;
+  let appbar_grab: boolean = $state(false);
+
+  $effect(() => {
+    setTimeout(() => {
+      show_error_pop_up = false;
+    }, 6000);
+  });
 
   function move_window(e: any) {
     if (appbar_grab) {
@@ -70,11 +85,19 @@
   >
     <text>{text}</text>
     <div class="button-row">
-      <WindowButton icon={minimize_button} />
-      <WindowButton icon={close_button} />
+      <WindowButton icon={minimize_button} on_click_function={() => {}} />
+      <WindowButton
+        icon={close_button}
+        on_click_function={() => {
+          show_error_pop_up = true;
+        }}
+      />
     </div>
   </div>
   <img class="content" src={img_content} alt="img for the content side" />
+  {#if show_error_pop_up}
+    <ErrorPopUp animation_options={error_pop_up_options} />
+  {/if}
 </div>
 
 <style lang="scss">

@@ -1,6 +1,16 @@
 <script lang="ts">
   import "../utils/general.scss";
-  let { icon_url, text, width, on_click_function } = $props();
+  let {
+    icon_url,
+    text,
+    width,
+    on_click_function,
+  }: {
+    icon_url: string;
+    text: string | null;
+    width: string | null;
+    on_click_function: () => void;
+  } = $props();
 </script>
 
 <button

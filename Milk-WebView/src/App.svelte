@@ -4,11 +4,13 @@
   import VaporwaveTaskbar from "./lib/elements/taskbar/vaporwave_taskbar.svelte";
 </script>
 
-<main>
-  <VaporwaveDesktop />
-</main>
+<crt-filter>
+  <main>
+    <VaporwaveDesktop />
+  </main>
 
-<ui>
-  <VaporwaveStartmenu />
-  <VaporwaveTaskbar />
-</ui>
+  <hud>
+    <VaporwaveStartmenu />
+    <VaporwaveTaskbar />
+  </hud>
+</crt-filter>

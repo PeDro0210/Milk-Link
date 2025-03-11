@@ -1,14 +1,17 @@
 <script lang="ts">
-  export let icon;
+  let {
+    icon,
+    on_click_function,
+  }: { icon: string; on_click_function: () => void } = $props();
 </script>
 
-<button aria-label="icon-button">
+<button aria-label="icon-button" onclick={on_click_function}>
   <img class="icon-image" src={icon} alt="icon of the button" />
 </button>
 
 <style lang="scss">
   button {
-    /* minimize-button */
+    /* window-button */
 
     box-sizing: border-box;
 
