@@ -4,12 +4,14 @@
     icon_url,
     text,
     width,
+    key,
     on_click_function,
   }: {
     icon_url: string;
     text: string | null;
     width: string | null;
     on_click_function: () => void;
+    key: number | null;
   } = $props();
 </script>
 

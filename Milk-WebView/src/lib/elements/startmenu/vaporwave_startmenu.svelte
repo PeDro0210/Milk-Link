@@ -3,20 +3,20 @@
   import { icon_placeholder_url } from "../taskbar/utils/constant";
   import type { TaskbarButton } from "../taskbar/utils/interfaces";
   import { slide } from "svelte/transition";
-  import { global_state } from "../../handlers/global_state.svelte";
+  import { global_state } from "../../handlers/global_handlers/global_state.svelte";
 
   let options = { duration: 50, x: "75vh" };
 
   //! Just for debugging
   let dummy_link_buttons: TaskbarButton[] = [];
 
-  let window_buttons: TaskbarButton = {
-    icon: icon_placeholder_url,
-    text: null,
-    width: null,
-  };
-
   for (let i = 0; i <= 10; i++) {
+    let window_buttons: TaskbarButton = {
+      icon: icon_placeholder_url,
+      text: null,
+      width: null,
+      key: i,
+    };
     dummy_link_buttons.push(window_buttons);
   }
 </script>
@@ -28,7 +28,11 @@
     </div>
     <div id="content-side">
       {#each dummy_link_buttons as button}
-        <LinkButtons icon_url={button.icon} text={window_buttons.text} />
+        <LinkButtons
+          icon_url={button.icon}
+          text={button.text}
+          key={button.key}
+        />
       {/each}
     </div>
   </div>

@@ -1,5 +1,9 @@
 <script lang="ts">
-  let { icon_url, text }: { icon_url: string; text: string | null } = $props();
+  let {
+    icon_url,
+    text,
+    key,
+  }: { icon_url: string; text: string | null; key: number } = $props();
 </script>
 
 <button class="taskbar-button">

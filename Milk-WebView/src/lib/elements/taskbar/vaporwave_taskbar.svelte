@@ -8,7 +8,7 @@
   } from "./utils/constant";
   import TaskbarClock from "./components/taskbar_clock.svelte";
   import { onMount } from "svelte";
-  import { global_state } from "../../handlers/global_state.svelte";
+  import { global_state } from "../../handlers/global_handlers/global_state.svelte";
 
   //TODO: move part of this reactivity to the handlers
 
@@ -49,13 +49,13 @@
 
   let dummy_window_buttons: TaskbarButton[] = [];
 
-  let window_buttons: TaskbarButton = {
-    icon: icon_placeholder_url,
-    text: null,
-    width: null,
-  };
-
   for (let i = 0; i <= 10; i++) {
+    let window_buttons: TaskbarButton = {
+      icon: icon_placeholder_url,
+      text: null,
+      width: null,
+      key: i,
+    };
     dummy_window_buttons.push(window_buttons);
   }
 </script>
@@ -66,6 +66,7 @@
     width={start_button_attributes.width}
     text={start_button_attributes.text}
     on_click_function={global_state.toggle}
+    key={null}
   />
 
   <Separator />
@@ -78,6 +79,7 @@
         width={button.width}
         text={button.text}
         on_click_function={() => {}}
+        key={button.key}
       />
     {/each}
   </div>

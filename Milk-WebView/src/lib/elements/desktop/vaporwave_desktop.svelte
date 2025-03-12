@@ -10,11 +10,7 @@
 
 <div class="desktop">
   <!--TODO: add the respective key for each window-->
-  <VaporwaveWindow text={"SAKURA"} img_content={url} key={1} />
+  <VaporwaveWindow text={"SAKURA"} img_content={url} key={0} />
+  <VaporwaveWindow text={"SAKURA"} img_content={second_url} key={1} />
   <VaporwaveWindow text={"SAKURA"} img_content={second_url} key={2} />
-  <VaporwaveWindow text={"SAKURA"} img_content={second_url} key={3} />
-  <VaporwaveWindow text={"SAKURA"} img_content={url} key={4} />
-  <VaporwaveWindow text={"SAKURA"} img_content={second_url} key={5} />
-  <VaporwaveWindow text={"SAKURA"} img_content={url} key={6} />
-  <VaporwaveWindow text={"SAKURA"} img_content={url} key={7} />
 </div>

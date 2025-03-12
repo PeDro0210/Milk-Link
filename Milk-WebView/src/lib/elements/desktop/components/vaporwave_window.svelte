@@ -14,14 +14,17 @@
 
   let error_pop_up_options = { duration: 100 };
 
+  /*let's ignore the magic numbers in the position of each of the windows,
+   * they're rough approximations I did for keeping the windows in the center
+   */
   let x_position: string = $state(
     window.localStorage.getItem("positionX" + key) ??
-      (-750 + 150 * key).toString(),
+      (-750 + 150 * (key + 1)).toString(),
   );
 
   let y_position: string = $state(
     window.localStorage.getItem("positionY" + key) ??
-      (-300 + 20 * key).toString(),
+      (-300 + 20 * (key + 1)).toString(),
   );
 
   let appbar_grab: boolean = $state(false);
