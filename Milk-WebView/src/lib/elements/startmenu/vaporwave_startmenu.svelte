@@ -3,7 +3,7 @@
   import { icon_placeholder_url } from "../taskbar/utils/constant";
   import type { TaskbarButton } from "../taskbar/utils/interfaces";
   import { slide } from "svelte/transition";
-  import { global_state } from "../../handlers/global_handlers/global_state.svelte";
+  import { global_state } from "../../handlers/global_handlers/global_handler.svelte";
 
   let options = { duration: 50, x: "75vh" };
 

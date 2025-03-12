@@ -8,7 +8,7 @@
   } from "./utils/constant";
   import TaskbarClock from "./components/taskbar_clock.svelte";
   import { onMount } from "svelte";
-  import { global_state } from "../../handlers/global_handlers/global_state.svelte";
+  import { global_state } from "../../handlers/global_handlers/global_handler.svelte";
 
   //TODO: move part of this reactivity to the handlers
 
