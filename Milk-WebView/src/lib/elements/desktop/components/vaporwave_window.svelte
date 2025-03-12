@@ -8,7 +8,7 @@
     text,
     img_content,
     key,
-  }: { text: string; img_content: string; key: number } = $props();
+  }: { text: string; img_content: string | null; key: number } = $props();
 
   let show_error_pop_up: boolean = $state(false);
 
@@ -177,7 +177,7 @@
       text {
         width: 70%;
         text-align: left;
-        font-size: 2.2em;
+        font-size: 1.8em;
       }
     }
 

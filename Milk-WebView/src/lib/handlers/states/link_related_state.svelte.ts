@@ -2,6 +2,6 @@ import type { Link } from "../../models/link.svelte";
 
 //This is for desktop and startmenu element
 
-export interface Desktop {
+export interface LinkRelated {
   links_list: Array<Link>
 }

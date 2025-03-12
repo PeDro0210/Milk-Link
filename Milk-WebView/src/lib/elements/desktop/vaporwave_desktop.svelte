@@ -1,16 +1,26 @@
 <script lang="ts">
+  import type { LinkRelated } from "../../handlers/states/link_related_state.svelte";
   import VaporwaveStartmenu from "../startmenu/vaporwave_startmenu.svelte";
   import VaporwaveWindow from "./components/vaporwave_window.svelte";
+  import desktopHandler from "../../handlers/elements_handlers/desktop/desktop_handler";
 
-  let url: string =
-    "https://firebasestorage.googleapis.com/v0/b/fatipage-a0067.firebasestorage.app/o/milk-link%2Fsakura.gif?alt=media&token=0deac380-54fd-492b-8471-117fad2b5553";
-  let second_url: string =
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFhMBpxrwebN_WcQyME2cNmtDFqf7Ua8Wq4g&s";
+  let state: LinkRelated = $state({
+    links_list: [],
+  });
+
+  let handler = desktopHandler(state);
+
+  $effect(() => {
+    handler.fetch_links();
+  });
 </script>
 
 <div class="desktop">
-  <!--TODO: add the respective key for each window-->
-  <VaporwaveWindow text={"SAKURA"} img_content={url} key={0} />
-  <VaporwaveWindow text={"SAKURA"} img_content={second_url} key={1} />
-  <VaporwaveWindow text={"SAKURA"} img_content={second_url} key={2} />
+  {#each state.links_list as link}
+    <VaporwaveWindow
+      text={link.title}
+      img_content={link.window_photo}
+      key={link.key}
+    />
+  {/each}
 </div>
