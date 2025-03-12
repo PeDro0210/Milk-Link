@@ -4,7 +4,7 @@ import type { Link } from "../../../models/link.svelte";
 function desktopHandler(desktop_state: LinkRelated) {
 
   //TODO: implement fetching
-  let window_fetcher = () => {
+  let fetcher = () => {
     const link_1: Link = {
       key: 0,
       title: "Sakura goty",
@@ -30,7 +30,7 @@ function desktopHandler(desktop_state: LinkRelated) {
   }
 
   return {
-    fetch_links: window_fetcher
+    fetch_links: fetcher
   };
 }
 

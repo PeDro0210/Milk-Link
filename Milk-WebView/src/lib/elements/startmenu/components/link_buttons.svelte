@@ -54,7 +54,7 @@
 
     /* text */
     text {
-      width: 19px;
+      width: 80%;
       height: 17px;
 
       font-family: "Jersey 10";

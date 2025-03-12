@@ -4,21 +4,20 @@
   import type { TaskbarButton } from "../taskbar/utils/interfaces";
   import { slide } from "svelte/transition";
   import { global_state } from "../../handlers/global_handlers/global_handler.svelte";
+  import type { LinkRelated } from "../../handlers/states/link_related_state.svelte";
+  import startMenuHandler from "../../handlers/elements_handlers/startmenu/startmenu_handler";
 
   let options = { duration: 50, x: "75vh" };
 
-  //! Just for debugging
-  let dummy_link_buttons: TaskbarButton[] = [];
+  let state: LinkRelated = $state({
+    links_list: [],
+  });
 
-  for (let i = 0; i <= 10; i++) {
-    let window_buttons: TaskbarButton = {
-      icon: icon_placeholder_url,
-      text: null,
-      width: null,
-      key: i,
-    };
-    dummy_link_buttons.push(window_buttons);
-  }
+  let handler = startMenuHandler(state);
+
+  $effect(() => {
+    handler.fetch_links();
+  });
 </script>
 
 {#if !global_state.slide_start_menu}
@@ -27,10 +26,10 @@
       <text>Pedro's Link</text>
     </div>
     <div id="content-side">
-      {#each dummy_link_buttons as button}
+      {#each state.links_list as button}
         <LinkButtons
-          icon_url={button.icon}
-          text={button.text}
+          icon_url={button.startmenu_photo as string}
+          text={button.title}
           key={button.key}
         />
       {/each}
