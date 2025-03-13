@@ -5,22 +5,16 @@
   import { slide } from "svelte/transition";
   import { global_state } from "../../handlers/global_handlers/global_handler.svelte";
   import type { LinkRelated } from "../../handlers/states/link_related_state.svelte";
-  import startMenuHandler from "../../handlers/elements_handlers/startmenu/startmenu_handler";
+  import startMenuHandler from "../../handlers/elements_handlers/startmenu/startmenu_handler.svelte";
 
   let options = { duration: 50, x: "75vh" };
 
-  let state: LinkRelated = $state({
-    links_list: [],
-  });
+  let handler = startMenuHandler();
 
-  let handler = startMenuHandler(state);
+  let state: LinkRelated = $state(handler.getState());
 
   $effect(() => {
-    handler = startMenuHandler(state);
-  });
-
-  $effect(() => {
-    state = handler.fetch_links();
+    handler.fetch_links();
   });
 </script>
 

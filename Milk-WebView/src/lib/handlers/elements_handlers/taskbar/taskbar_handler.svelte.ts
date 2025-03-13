@@ -1,7 +1,22 @@
 import type { Link } from "../../../models/link.svelte";
-import type { TaskBar } from "../../states/taskbar_handler_state.svelte";
+import type { TaskBar } from "../../states/taskbar_state.svelte";
 
-function taskbarHandler(taskbar_state: TaskBar) {
+
+/*
+ *  First rule before anything, simplicty before doing weird sheningangs,
+ *  The only way those are acceptable, is if they are faster, then... is just useless
+ */
+function taskbarHandler() {
+
+  let state: TaskBar = $state({
+    links_list: [],
+    inner_width: "",
+    time: new Date(),
+  });
+
+  let state_getter = () => {
+    return state;
+  }
 
   let links_fetcher = () => {
     const link_1: Link = {
@@ -22,35 +37,40 @@ function taskbarHandler(taskbar_state: TaskBar) {
       startmenu_photo: null,
     };
 
-    taskbar_state.links_list = [
+    return [
       link_1, link_2
     ]
 
-    return taskbar_state;
 
   };
 
 
   let innerwidth_changer = (window_inner_width: number) => {
-    taskbar_state.inner_width = window_inner_width - 335 + "px"  // Adjust the width calculation as needed
+    let new_inner_width = window_inner_width - 335 + "px"  // Adjust the width calculation as needed
 
     let window_side = document.querySelector(".windows-side") as HTMLElement;
-    window_side.style.setProperty("--window-width", taskbar_state.inner_width);
-    return taskbar_state;
+    window_side.style.setProperty("--window-width", new_inner_width);
+
+    return new_inner_width;
 
   };
 
   let time_fetcher = () => {
-    taskbar_state.time = new Date();
-
-    return taskbar_state
+    return new Date();
   };
 
 
   return {
-    fetch_liks: links_fetcher,
-    on_change_width: innerwidth_changer,
-    fetch_time: time_fetcher
+    getState: state_getter,
+    fetchLinks: () => {
+      state.links_list = links_fetcher();
+    },
+    onChangeWidth: (window_width: number) => {
+      state.inner_width = innerwidth_changer(window_width);
+    },
+    fetchTime: () => {
+      state.time = time_fetcher();
+    }
   }
 
 }

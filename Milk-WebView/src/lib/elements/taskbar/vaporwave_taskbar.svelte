@@ -9,36 +9,35 @@
   import TaskbarClock from "./components/taskbar_clock.svelte";
   import { onMount } from "svelte";
   import { global_state } from "../../handlers/global_handlers/global_handler.svelte";
-  import type { TaskBar } from "../../handlers/states/taskbar_handler_state.svelte";
-  import taskbarHandler from "../../handlers/elements_handlers/taskbar/taskbar_handler";
+  import type { TaskBar } from "../../handlers/states/taskbar_state.svelte";
+  import taskbarHandler from "../../handlers/elements_handlers/taskbar/taskbar_handler.svelte";
+
+  //let's not talk about this stupid workaround
 
   //TODO: move part of this reactivity to the handlers
 
-  let state: TaskBar = $state({
-    links_list: [],
-    inner_width: "",
-    time: new Date(),
-  });
+  let handler = taskbarHandler();
 
-  let handler = taskbarHandler(state);
+  let state: TaskBar = $state(handler.getState());
 
-  let windowResizing = () => {
+  let window_resizing = async () => {
     let window_width: number = window.innerWidth;
-    state = handler.on_change_width(window_width);
+    handler.onChangeWidth(window_width);
+  };
+
+  let fetch_links = async () => {
+    handler.fetchLinks();
   };
 
   onMount(() => {
-    windowResizing;
-  });
-
-  $effect(() => {
-    handler = taskbarHandler(state);
+    fetch_links();
+    window_resizing();
   });
 
   //Managing the date for the clock
   $effect(() => {
     setInterval(() => {
-      state = handler.fetch_time();
+      handler.fetchTime();
       console.log(state.time);
     }, 6000);
   });
@@ -46,11 +45,7 @@
   //this is still not the best option, is a pretty inscure way to listening the DOM
   //Managing the resizing of the window-sidebar
   $effect(() => {
-    window.addEventListener("resize", windowResizing);
-  });
-
-  $effect(() => {
-    state = handler.fetch_liks();
+    window.addEventListener("resize", window_resizing);
   });
 </script>
 
