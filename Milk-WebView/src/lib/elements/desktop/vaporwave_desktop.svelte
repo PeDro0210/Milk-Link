@@ -1,12 +1,12 @@
 <script lang="ts">
-  import type { LinkRelated } from "../../handlers/states/link_related_state.svelte";
+  import type { LinkRelatedState } from "../../handlers/states/link_related_state.svelte";
   import VaporwaveWindow from "./components/vaporwave_window.svelte";
   import desktopHandler from "../../handlers/elements_handlers/desktop/desktop_handler.svelte";
   import { onMount } from "svelte";
 
   let handler = desktopHandler();
 
-  let state: LinkRelated = $state(handler.getState());
+  let state: LinkRelatedState = $state(handler.getState());
 
   onMount(() => {
     handler.fetch_links();

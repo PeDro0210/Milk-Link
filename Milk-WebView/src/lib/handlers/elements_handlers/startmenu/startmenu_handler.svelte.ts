@@ -1,8 +1,8 @@
-import type { LinkRelated } from "../../states/link_related_state.svelte";
+import type { LinkRelatedState } from "../../states/link_related_state.svelte";
 import type { Link } from "../../../models/link.svelte";
 
 function startMenuHandler() {
-  let state: LinkRelated = {
+  let state: LinkRelatedState = {
     links_list: []
   }
 

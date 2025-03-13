@@ -1,11 +1,11 @@
-import type { LinkRelated } from "../../states/link_related_state.svelte";
+import type { LinkRelatedState } from "../../states/link_related_state.svelte";
 import type { Link } from "../../../models/link.svelte";
 
 
 
 function desktopHandler() {
 
-  let state: LinkRelated = $state({
+  let state: LinkRelatedState = $state({
     links_list: [],
   });
 

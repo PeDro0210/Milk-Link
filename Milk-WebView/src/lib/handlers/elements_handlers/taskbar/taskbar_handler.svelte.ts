@@ -1,5 +1,5 @@
 import type { Link } from "../../../models/link.svelte";
-import type { TaskBar } from "../../states/taskbar_state.svelte";
+import type { TaskBarState } from "../../states/taskbar_state.svelte";
 
 
 /*
@@ -8,7 +8,7 @@ import type { TaskBar } from "../../states/taskbar_state.svelte";
  */
 function taskbarHandler() {
 
-  let state: TaskBar = $state({
+  let state: TaskBarState = $state({
     links_list: [],
     inner_width: "",
     time: new Date(),

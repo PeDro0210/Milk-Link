@@ -4,14 +4,14 @@
   import type { TaskbarButton } from "../taskbar/utils/interfaces";
   import { slide } from "svelte/transition";
   import { global_state } from "../../handlers/global_handlers/global_handler.svelte";
-  import type { LinkRelated } from "../../handlers/states/link_related_state.svelte";
+  import type { LinkRelatedState } from "../../handlers/states/link_related_state.svelte";
   import startMenuHandler from "../../handlers/elements_handlers/startmenu/startmenu_handler.svelte";
 
   let options = { duration: 50, x: "75vh" };
 
   let handler = startMenuHandler();
 
-  let state: LinkRelated = $state(handler.getState());
+  let state: LinkRelatedState = $state(handler.getState());
 
   $effect(() => {
     handler.fetch_links();

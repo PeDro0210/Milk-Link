@@ -1,6 +1,8 @@
 <script lang="ts">
   import close_button from "../../../../assets/icon_buttons/close_icon.svg";
   import minimize_button from "../../../../assets/icon_buttons/minimize_icon.svg";
+  import windowHandler from "../../../handlers/elements_handlers/window/window_handler.svelte";
+  import type { WindowState } from "../../../handlers/states/window_state.svelte";
   import ErrorPopUp from "./compontents/error_pop_up.svelte";
   import WindowButton from "./compontents/window_button.svelte";
 
@@ -10,81 +12,36 @@
     key,
   }: { text: string; img_content: string | null; key: number } = $props();
 
-  let show_error_pop_up: boolean = $state(false);
-
   let error_pop_up_options = { duration: 100 };
 
-  /*let's ignore the magic numbers in the position of each of the windows,
-   * they're rough approximations I did for keeping the windows in the center
-   */
-  let x_position: string = $state(
-    window.localStorage.getItem("positionX" + key) ??
-      (-750 + 150 * (key + 1)).toString(),
-  );
+  let handler = windowHandler(window, key);
 
-  let y_position: string = $state(
-    window.localStorage.getItem("positionY" + key) ??
-      (-300 + 20 * (key + 1)).toString(),
-  );
-
-  let appbar_grab: boolean = $state(false);
+  let state: WindowState = $state(handler.getState());
 
   $effect(() => {
-    console.log(show_error_pop_up);
     setTimeout(() => {
-      show_error_pop_up = false;
+      handler.onShowError(false);
     }, 3000);
   });
-
-  function move_window(e: any) {
-    if (appbar_grab) {
-      //The cool middle man
-      let _x_pos: number = parseInt(x_position);
-      let _y_pos: number = parseInt(y_position);
-
-      _x_pos += e.movementX;
-      _y_pos += e.movementY;
-
-      //deparsing
-      x_position = _x_pos.toString();
-      y_position = _y_pos.toString();
-
-      window.localStorage.setItem("positionX" + key, _x_pos.toString());
-      window.localStorage.setItem("positionY" + key, _y_pos.toString());
-    }
-  }
-
-  function move_to_front(e: any) {
-    //! this is not a good practice, is not good for a higher abstraction to be messing with the DOM directly
-    let all_windows = document.querySelectorAll(
-      ".window",
-    ) as NodeListOf<HTMLElement>;
-
-    all_windows.forEach((win) => {
-      win.style.zIndex = "0";
-    });
-
-    e.currentTarget.style.zIndex = "1";
-  }
 </script>
 
 <svelte:window
   onmouseup={() => {
-    appbar_grab = false;
+    handler.onAppbarGrabbed(false);
   }}
-  onmousemove={move_window}
+  onmousemove={handler.onWindowPositionChange}
 />
 
 <div
   class="window"
-  style="transform: translate({x_position}px,{y_position}px);"
-  onmouseup={move_to_front}
+  style="transform: translate({state.x_position}px,{state.y_position}px);"
+  onmouseup={handler.onMoveToFront}
 >
   <!-- the button is or making the compiler happy-->
   <div
     class="app-bar"
     onmousedown={() => {
-      appbar_grab = true;
+      handler.onAppbarGrabbed(true);
     }}
   >
     <text>{text}</text>
@@ -93,13 +50,13 @@
       <WindowButton
         icon={close_button}
         on_click_function={() => {
-          show_error_pop_up = true;
+          handler.onShowError(true);
         }}
       />
     </div>
   </div>
   <img class="content" src={img_content} alt="img for the content side" />
-  {#if show_error_pop_up}
+  {#if state.show_error_pop_up}
     <ErrorPopUp animation_options={error_pop_up_options} />
   {/if}
 </div>

@@ -9,16 +9,14 @@
   import TaskbarClock from "./components/taskbar_clock.svelte";
   import { onMount } from "svelte";
   import { global_state } from "../../handlers/global_handlers/global_handler.svelte";
-  import type { TaskBar } from "../../handlers/states/taskbar_state.svelte";
+  import type { TaskBarState } from "../../handlers/states/taskbar_state.svelte";
   import taskbarHandler from "../../handlers/elements_handlers/taskbar/taskbar_handler.svelte";
 
   //let's not talk about this stupid workaround
 
-  //TODO: move part of this reactivity to the handlers
-
   let handler = taskbarHandler();
 
-  let state: TaskBar = $state(handler.getState());
+  let state: TaskBarState = $state(handler.getState());
 
   let window_resizing = async () => {
     let window_width: number = window.innerWidth;
