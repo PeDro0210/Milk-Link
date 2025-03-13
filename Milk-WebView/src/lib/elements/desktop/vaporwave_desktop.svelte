@@ -11,7 +11,11 @@
   let handler = desktopHandler(state);
 
   $effect(() => {
-    handler.fetch_links();
+    handler = desktopHandler(state);
+  });
+
+  $effect(() => {
+    state = handler.fetch_links();
   });
 </script>
 

@@ -16,7 +16,11 @@
   let handler = startMenuHandler(state);
 
   $effect(() => {
-    handler.fetch_links();
+    handler = startMenuHandler(state);
+  });
+
+  $effect(() => {
+    state = handler.fetch_links();
   });
 </script>
 

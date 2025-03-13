@@ -9,55 +9,49 @@
   import TaskbarClock from "./components/taskbar_clock.svelte";
   import { onMount } from "svelte";
   import { global_state } from "../../handlers/global_handlers/global_handler.svelte";
+  import type { TaskBar } from "../../handlers/states/taskbar_handler_state.svelte";
+  import taskbarHandler from "../../handlers/elements_handlers/taskbar/taskbar_handler";
 
   //TODO: move part of this reactivity to the handlers
 
-  //The reactivity GRAWWWWWW
-  let time: Date = $state(new Date());
-  let _innerWidth: string = $state("");
+  let state: TaskBar = $state({
+    links_list: [],
+    inner_width: "",
+    time: new Date(),
+  });
 
-  let windowResizing = (width: string) => {
-    let window_side = document.querySelector(".windows-side") as HTMLElement;
-    window_side.style.setProperty("--window-width", width);
+  let handler = taskbarHandler(state);
+
+  let windowResizing = () => {
+    let window_width: number = window.innerWidth;
+    state = handler.on_change_width(window_width);
   };
 
   onMount(() => {
-    _innerWidth = window.innerWidth - 335 + "px";
-    windowResizing(_innerWidth);
+    windowResizing;
+  });
+
+  $effect(() => {
+    handler = taskbarHandler(state);
   });
 
   //Managing the date for the clock
   $effect(() => {
     setInterval(() => {
-      time = new Date();
-      console.log(time);
+      state = handler.fetch_time();
+      console.log(state.time);
     }, 6000);
   });
 
   //this is still not the best option, is a pretty inscure way to listening the DOM
   //Managing the resizing of the window-sidebar
   $effect(() => {
-    const updateWidth = () => {
-      _innerWidth = window.innerWidth - 335 + "px"; // Adjust the width calculation as needed
-      windowResizing(_innerWidth);
-    };
-
-    window.addEventListener("resize", updateWidth);
+    window.addEventListener("resize", windowResizing);
   });
 
-  //! This is mostly debugging code
-
-  let dummy_window_buttons: TaskbarButton[] = [];
-
-  for (let i = 0; i <= 10; i++) {
-    let window_buttons: TaskbarButton = {
-      icon: icon_placeholder_url,
-      text: null,
-      width: null,
-      key: i,
-    };
-    dummy_window_buttons.push(window_buttons);
-  }
+  $effect(() => {
+    state = handler.fetch_liks();
+  });
 </script>
 
 <div id="taskbar">
@@ -72,12 +66,11 @@
   <Separator />
 
   <div class="windows-side">
-    <!--TODO: Change the list to the real deal and add the correct functions-->
-    {#each dummy_window_buttons as button}
+    {#each state.links_list as button}
       <TaskbarButtons
-        icon_url={button.icon}
-        width={button.width}
-        text={button.text}
+        icon_url={button.taskbar_photo as string}
+        width={null}
+        text={button.title}
         on_click_function={() => {}}
         key={button.key}
       />
@@ -86,7 +79,7 @@
 
   <Separator />
 
-  <TaskbarClock {time} />
+  <TaskbarClock time={state.time} />
 </div>
 
 <style lang="scss">
