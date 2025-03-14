@@ -14,7 +14,7 @@
   let state: LinkRelatedState = $state(handler.getState());
 
   $effect(() => {
-    handler.fetch_links();
+    handler.getLinks();
   });
 </script>
 

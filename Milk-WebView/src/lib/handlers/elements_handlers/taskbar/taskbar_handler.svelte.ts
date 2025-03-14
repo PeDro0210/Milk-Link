@@ -62,14 +62,17 @@ function taskbarHandler() {
 
   return {
     getState: state_getter,
-    fetchLinks: () => {
+    getLinks: () => {
       state.links_list = links_fetcher();
     },
     onChangeWidth: (window_width: number) => {
       state.inner_width = innerwidth_changer(window_width);
     },
-    fetchTime: () => {
-      state.time = time_fetcher();
+    getTime: () => {
+      setInterval(() => {
+        state.time = time_fetcher();
+      }, 6000);
+
     }
   }
 

@@ -12,6 +12,7 @@
     key,
   }: { text: string; img_content: string | null; key: number } = $props();
 
+  //Configurations for the animiation of the ErrorPopUp
   let error_pop_up_options = { duration: 100 };
 
   let handler = windowHandler(window, key);

@@ -9,7 +9,7 @@
   let state: LinkRelatedState = $state(handler.getState());
 
   onMount(() => {
-    handler.fetch_links();
+    handler.getLinks();
   });
 </script>
 

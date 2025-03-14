@@ -24,7 +24,7 @@
   };
 
   let fetch_links = async () => {
-    handler.fetchLinks();
+    handler.getLinks();
   };
 
   onMount(() => {
@@ -34,10 +34,8 @@
 
   //Managing the date for the clock
   $effect(() => {
-    setInterval(() => {
-      handler.fetchTime();
-      console.log(state.time);
-    }, 6000);
+    handler.getTime();
+    console.log(state.time);
   });
 
   //this is still not the best option, is a pretty inscure way to listening the DOM

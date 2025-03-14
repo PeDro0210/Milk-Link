@@ -37,7 +37,7 @@ function desktopHandler() {
 
   return {
     getState: () => { return state },
-    fetch_links: () => { state.links_list = fetcher(); }
+    getLinks: () => { state.links_list = fetcher(); }
   };
 
 }

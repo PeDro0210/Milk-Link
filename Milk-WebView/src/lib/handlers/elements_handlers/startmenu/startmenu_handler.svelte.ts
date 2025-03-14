@@ -36,7 +36,7 @@ function startMenuHandler() {
 
   return {
     getState: () => { return state; },
-    fetch_links: () => {
+    getLinks: () => {
       state.links_list = link_fetcher();
     }
   };
