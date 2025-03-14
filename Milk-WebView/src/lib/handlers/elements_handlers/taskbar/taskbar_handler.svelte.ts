@@ -18,6 +18,7 @@ function taskbarHandler() {
     return state;
   }
 
+  //TODO: implement the API fetching
   let links_fetcher = () => {
     const link_1: Link = {
       key: 0,
@@ -44,7 +45,8 @@ function taskbarHandler() {
 
   };
 
-
+  //Changes the innerwidth of the taskbar and changes css variable of the window-width 
+  //Ik i'm using scss, but GRAWWWWWWWWW, PREPROCESSORS
   let innerwidth_changer = (window_inner_width: number) => {
     let new_inner_width = window_inner_width - 335 + "px"  // Adjust the width calculation as needed
 

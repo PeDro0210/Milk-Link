@@ -8,6 +8,7 @@ export let icon_placeholder_url: string =
 
 
 export let start_button_attributes: TaskbarButton = {
+  key: -1,
   icon: icon_placeholder_url,
   text: "Start",
   width: "128px",
