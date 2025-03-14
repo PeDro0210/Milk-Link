@@ -61,8 +61,12 @@ function windowHandler(window: Window & typeof globalThis, key: number) {
     onAppbarGrabbed: (new_value: boolean) => {
       state.appbar_grabbed = new_value;
     },
-    onShowError: (new_value: boolean) => {
-      state.show_error_pop_up = new_value;
+    onShowError: () => {
+      state.show_error_pop_up = true;
+      setTimeout(() => {
+        state.show_error_pop_up = false;
+      }, 3000);
+
     },
 
   }

@@ -17,12 +17,6 @@
   let handler = windowHandler(window, key);
 
   let state: WindowState = $state(handler.getState());
-
-  $effect(() => {
-    setTimeout(() => {
-      handler.onShowError(false);
-    }, 3000);
-  });
 </script>
 
 <svelte:window
@@ -50,7 +44,7 @@
       <WindowButton
         icon={close_button}
         on_click_function={() => {
-          handler.onShowError(true);
+          handler.onShowError();
         }}
       />
     </div>
