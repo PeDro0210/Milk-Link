@@ -21,7 +21,10 @@ services:
     command:
       - /bin/sh
       - -c
-      - redis-server --requirepass "$${REDIS_PASSCODE:?REDIS_PASSCODE variable is not set}"
+      - redis-server --requirepass "$${REDIS_PASSCODE:?1234}"
+      - redis-server --user "$${REDIS_USERNAME:?user}" 
+    ports:
+      - "6379:6379"
     volumes:
       - db:/var/lib/redis/data
     env_file:
