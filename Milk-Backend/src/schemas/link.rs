@@ -2,7 +2,7 @@ use juniper::GraphQLObject;
 use serde::{Deserialize, Serialize};
 
 //TODO: Add the redis dependencies and mappers
-#[derive(Clone, Serialize, Deserialize, GraphQLObject)]
+#[derive(Clone, Serialize, Deserialize, GraphQLObject, Debug)]
 pub struct Link {
     pub link: String,
     pub title: String,
