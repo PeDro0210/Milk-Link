@@ -11,7 +11,7 @@ function windowHandler(window: Window & typeof globalThis, key: number) {
     x_position: window.localStorage.getItem("positionX" + key) ??
       (-750 + 150 * (key + 1)).toString(),
     y_position: window.localStorage.getItem("positionY" + key) ??
-      (-750 + 150 * (key + 1)).toString(),
+      (-600 + 100 * (key + 2)).toString(),
     appbar_grabbed: false,
     show_error_pop_up: false
   });

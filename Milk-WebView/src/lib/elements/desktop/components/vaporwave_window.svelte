@@ -9,8 +9,14 @@
   let {
     text,
     img_content,
+    on_click_function,
     key,
-  }: { text: string; img_content: string | null; key: number } = $props();
+  }: {
+    text: string;
+    img_content: string | null;
+    on_click_function: () => void;
+    key: number;
+  } = $props();
 
   //Configurations for the animiation of the ErrorPopUp
   let error_pop_up_options = { duration: 100 };
@@ -50,7 +56,12 @@
       />
     </div>
   </div>
-  <img class="content" src={img_content} alt="img for the content side" />
+  <img
+    class="content"
+    src={img_content}
+    onclick={on_click_function}
+    alt="img for the content side"
+  />
   {#if state.show_error_pop_up}
     <ErrorPopUp animation_options={error_pop_up_options} />
   {/if}
@@ -105,6 +116,10 @@
         cursor: pointer;
       }
 
+      &:hover {
+        cursor: pointer;
+      }
+
       .button-row {
         /* button-row */
 
@@ -151,6 +166,13 @@
       flex: none;
       order: 1;
       flex-grow: 0;
+      &:hover {
+        cursor: pointer;
+      }
+
+      &:active {
+        border-width: 0px 0px 0px 0px;
+      }
     }
   }
 </style>

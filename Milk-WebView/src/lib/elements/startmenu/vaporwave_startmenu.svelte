@@ -26,8 +26,11 @@
     <div id="content-side">
       {#each state.links_list as button}
         <LinkButtons
-          icon_url={button.startmenu_photo as string}
+          icon_url={button.startmenuIconUrl as string}
           text={button.title}
+          on_click_function={() => {
+            window.open(button.link, "_blank");
+          }}
           key={button.key}
         />
       {/each}

@@ -59,10 +59,12 @@
   <div class="windows-side">
     {#each state.links_list as button}
       <TaskbarButtons
-        icon_url={button.taskbar_photo as string}
+        icon_url={button.taskbarIconUrl as string}
         width={null}
         text={button.title}
-        on_click_function={() => {}}
+        on_click_function={() => {
+          window.open(button.link, "_blank");
+        }}
         key={button.key}
       />
     {/each}

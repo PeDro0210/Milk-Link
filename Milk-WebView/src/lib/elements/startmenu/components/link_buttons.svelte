@@ -2,11 +2,17 @@
   let {
     icon_url,
     text,
+    on_click_function,
     key,
-  }: { icon_url: string; text: string | null; key: number } = $props();
+  }: {
+    icon_url: string;
+    text: string | null;
+    on_click_function: () => void;
+    key: number;
+  } = $props();
 </script>
 
-<button class="taskbar-button">
+<button class="taskbar-button" onclick={on_click_function}>
   <img class="icon" src={icon_url} alt="icon of the link button" />
   <text>{text ?? "PLACEHOLDER"}</text>
 </button>

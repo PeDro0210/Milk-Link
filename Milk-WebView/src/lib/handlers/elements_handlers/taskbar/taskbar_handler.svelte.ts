@@ -1,6 +1,6 @@
 import type { Link } from "../../../models/link.svelte";
 import type { TaskBarState } from "../../states/taskbar_state.svelte";
-
+import { api } from "../../global_handlers/global_handler.svelte";
 
 /*
  *  First rule before anything, simplicty before doing weird sheningangs,
@@ -19,29 +19,24 @@ function taskbarHandler() {
   }
 
   //TODO: implement the API fetching
-  let links_fetcher = () => {
-    const link_1: Link = {
-      key: 0,
-      title: "Sakura goty",
-      taskbar_photo:
-        "https://firebasestorage.googleapis.com/v0/b/fatipage-a0067.firebasestorage.app/o/milk-link%2Fsakura.gif?alt=media&token=0deac380-54fd-492b-8471-117fad2b5553",
-      window_photo: null,
-      startmenu_photo: null,
-    };
-
-    const link_2: Link = {
-      key: 1,
-      title: "Sakura",
-      taskbar_photo:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFhMBpxrwebN_WcQyME2cNmtDFqf7Ua8Wq4g&s",
-      window_photo: null,
-      startmenu_photo: null,
-    };
-
-    return [
-      link_1, link_2
-    ]
-
+  let links_fetcher = async () => {
+    api({
+      url: "/graphql",
+      method: "post",
+      data: {
+        query: `
+        query{
+          getLinks{
+            key
+            title
+            link
+            taskbarIconUrl
+          }
+        }`
+      }
+    }).then((result: any) => {
+      state.links_list = result.data.data.getLinks as Array<Link>
+    })
 
   };
 
@@ -64,8 +59,8 @@ function taskbarHandler() {
 
   return {
     getState: state_getter,
-    getLinks: () => {
-      state.links_list = links_fetcher();
+    getLinks: async () => {
+      links_fetcher();
     },
     onChangeWidth: (window_width: number) => {
       state.inner_width = innerwidth_changer(window_width);

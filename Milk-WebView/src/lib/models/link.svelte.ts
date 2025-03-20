@@ -1,9 +1,10 @@
 //TODO: Add the link
 export interface Link {
-  key: number;
+  key: number,
   title: string;
+  link: string;
 
-  window_photo: string | null;
-  taskbar_photo: string | null;
-  startmenu_photo: string | null;
+  windowPhotoUrl: string | null;
+  taskbarIconUrl: string | null;
+  startmenuIconUrl: string | null;
 } 

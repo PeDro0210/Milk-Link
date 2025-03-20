@@ -8,17 +8,24 @@
 
   let state: LinkRelatedState = $state(handler.getState());
 
-  onMount(() => {
-    handler.getLinks();
+  onMount(async () => {
+    await handler.getLinks();
+  });
+
+  $effect(() => {
+    console.log(state.links_list);
   });
 </script>
 
 <div class="desktop">
-  {#each state.links_list as link}
+  {#each state.links_list as link_object}
     <VaporwaveWindow
-      text={link.title}
-      img_content={link.window_photo}
-      key={link.key}
+      text={link_object.title}
+      img_content={link_object.windowPhotoUrl}
+      on_click_function={() => {
+        window.open(link_object.link, "_blank");
+      }}
+      key={link_object.key}
     />
   {/each}
 </div>

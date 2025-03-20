@@ -1,3 +1,4 @@
+import axios from "axios";
 
 export const global_state = $state({
 
@@ -8,3 +9,7 @@ export const global_state = $state({
   },
 
 });
+
+export const api = axios.create({
+  baseURL: "http://backend:5000"
+})

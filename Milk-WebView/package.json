@@ -18,5 +18,8 @@
     "svelte-preprocess": "^6.0.3",
     "typescript": "~5.7.2",
     "vite": "^6.2.0"
+  },
+  "dependencies": {
+    "axios": "^1.8.4"
   }
 }
