@@ -5,26 +5,26 @@ mod schemas;
 
 use actix_cors::Cors;
 use actix_web::{App, HttpServer};
+use config::Env;
 use handlers::endpoints::app_config;
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    //* For production
-    //let config = Env::env_init();
+    let config = Env::env_init();
 
-    // let port = config.port;
-    // let host = config.host;
+    let port = config.port;
+    let host = config.host;
 
-    //* debugging
-    let host = "0.0.0.0".to_string();
-    let port = 5000 as u16;
-
+    let webview_url = config.webview_url;
     std::env::set_var("RUST_LOG", "debug");
     env_logger::init();
 
     HttpServer::new(move || {
-        //TODO: change this to default and select the corresponded origin, methods and headers
-        let cors = Cors::permissive();
+        let cors = Cors::default()
+            .allowed_origin(&webview_url)
+            .allow_any_method()
+            .allow_any_header()
+            .max_age(3600);
 
         App::new().configure(app_config).wrap(cors)
     })

@@ -35,7 +35,6 @@
   //Managing the date for the clock
   $effect(() => {
     handler.getTime();
-    console.log(state.time);
   });
 
   //this is still not the best option, is a pretty inscure way to listening the DOM

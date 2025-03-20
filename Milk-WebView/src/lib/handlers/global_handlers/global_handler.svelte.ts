@@ -11,5 +11,5 @@ export const global_state = $state({
 });
 
 export const api = axios.create({
-  baseURL: "http://backend:5000"
+  baseURL: "http://localhost:5000"
 })
