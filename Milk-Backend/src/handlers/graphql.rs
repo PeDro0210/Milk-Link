@@ -10,7 +10,7 @@ pub struct Context {}
 impl Context {
     //FUCKING REPOS, THEY FORCE ME IN TO OOP
     fn link_repo(&self) -> LinkRepo {
-        return LinkRepo {};
+        return LinkRepo::init();
     }
 }
 

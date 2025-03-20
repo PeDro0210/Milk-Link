@@ -17,7 +17,7 @@ async fn main() -> std::io::Result<()> {
 
     //* debugging
     let host = "0.0.0.0".to_string();
-    let port = 5000 as u16;
+    let port = 5005 as u16;
 
     std::env::set_var("RUST_LOG", "debug");
     env_logger::init();
