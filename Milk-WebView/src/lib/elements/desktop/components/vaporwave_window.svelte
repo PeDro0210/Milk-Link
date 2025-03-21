@@ -156,7 +156,6 @@
       width: 100%;
       height: 90%;
 
-      background: #ffffff;
       border-width: 2px 1px 1px 2px;
       border-style: solid;
       border-color: #3a3a3a;
@@ -170,7 +169,7 @@
         cursor: pointer;
       }
 
-      &:active {
+      &:hover {
         border-width: 0px 0px 0px 0px;
       }
     }

@@ -1,15 +1,10 @@
 import { type TaskbarButton } from "./interfaces";
-
-
-//! This is for debugging
-export let icon_placeholder_url: string =
-  "https://firebasestorage.googleapis.com/v0/b/fatipage-a0067.firebasestorage.app/o/milk-link%2Fsakura.gif?alt=media&token=0deac380-54fd-492b-8471-117fad2b5553";
-//! This is for debugging
+import start_button_icon from "../../../../assets/start_icon_button.gif"
 
 
 export let start_button_attributes: TaskbarButton = {
   key: -1,
-  icon: icon_placeholder_url,
+  icon: start_button_icon,
   text: "Start",
   width: "128px",
 };

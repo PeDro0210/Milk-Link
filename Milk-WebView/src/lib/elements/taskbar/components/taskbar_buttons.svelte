@@ -4,14 +4,12 @@
     icon_url,
     text,
     width,
-    key,
     on_click_function,
   }: {
     icon_url: string;
     text: string | null;
     width: string | null;
     on_click_function: () => void;
-    key: number | null;
   } = $props();
 </script>
 
@@ -50,11 +48,6 @@
 
       width: 32px;
       height: 32px;
-
-      background: #ffece0;
-      border-width: 0px 1px 1px 0px;
-      border-style: solid;
-      border-color: #3a3a3a;
 
       /* Inside auto layout */
       flex: none;

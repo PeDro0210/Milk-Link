@@ -1,11 +1,7 @@
 <script lang="ts">
   import Separator from "./components/separator.svelte";
   import TaskbarButtons from "./components/taskbar_buttons.svelte";
-  import { type TaskbarButton } from "./utils/interfaces";
-  import {
-    icon_placeholder_url,
-    start_button_attributes,
-  } from "./utils/constant";
+  import { start_button_attributes } from "./utils/constant";
   import TaskbarClock from "./components/taskbar_clock.svelte";
   import { onMount } from "svelte";
   import { global_state } from "../../handlers/global_handlers/global_handler.svelte";
@@ -46,11 +42,10 @@
 
 <div id="taskbar">
   <TaskbarButtons
-    icon_url={icon_placeholder_url}
+    icon_url={start_button_attributes.icon}
     width={start_button_attributes.width}
     text={start_button_attributes.text}
     on_click_function={global_state.toggle}
-    key={null}
   />
 
   <Separator />
@@ -64,7 +59,6 @@
         on_click_function={() => {
           window.open(button.link, "_blank");
         }}
-        key={button.key}
       />
     {/each}
   </div>

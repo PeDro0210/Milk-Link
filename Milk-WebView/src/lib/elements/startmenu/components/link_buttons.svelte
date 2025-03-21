@@ -3,12 +3,10 @@
     icon_url,
     text,
     on_click_function,
-    key,
   }: {
     icon_url: string;
     text: string | null;
     on_click_function: () => void;
-    key: number;
   } = $props();
 </script>
 
@@ -47,7 +45,6 @@
       width: 32px;
       height: 32px;
 
-      background: #ffece0;
       border-width: 0px 1px 1px 0px;
       border-style: solid;
       border-color: #3a3a3a;

@@ -1,7 +1,5 @@
 <script lang="ts">
   import LinkButtons from "./components/link_buttons.svelte";
-  import { icon_placeholder_url } from "../taskbar/utils/constant";
-  import type { TaskbarButton } from "../taskbar/utils/interfaces";
   import { slide } from "svelte/transition";
   import { global_state } from "../../handlers/global_handlers/global_handler.svelte";
   import type { LinkRelatedState } from "../../handlers/states/link_related_state.svelte";
@@ -31,7 +29,6 @@
           on_click_function={() => {
             window.open(button.link, "_blank");
           }}
-          key={button.key}
         />
       {/each}
     </div>

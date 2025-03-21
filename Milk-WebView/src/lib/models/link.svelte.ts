@@ -1,6 +1,6 @@
 //TODO: Add the link
 export interface Link {
-  key: number,
+  key: number | null,
   title: string;
   link: string;
 
