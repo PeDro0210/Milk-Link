@@ -3,10 +3,26 @@
   import VaporwaveStartmenu from "./lib/elements/startmenu/vaporwave_startmenu.svelte";
   import VaporwaveTaskbar from "./lib/elements/taskbar/vaporwave_taskbar.svelte";
   import VaporwaveTaskbarPhone from "./lib/elements/taskbar_phone/vaporwave_taskbar_phone.svelte";
-  import { window_state } from "./lib/handlers/global_handlers/global_handler.svelte";
+  import {
+    reactivity_startmenu_state,
+    window_state,
+  } from "./lib/handlers/global_handlers/global_handler.svelte";
+  import AligmentTypes from "./lib/handlers/global_handlers/utils.svelte";
 
   $effect(() => {
     window_state.changeInnerWidth();
+
+    //The only propuse for calling this variable here, is for activating the $effect
+    //for running the  if statement down bewlo
+    let effect_activator = reactivity_startmenu_state.slide_start_menu;
+
+    if (window_state.window_width > 700) {
+      reactivity_startmenu_state.changeSelfAlign(AligmentTypes.start.valueOf());
+    } else {
+      reactivity_startmenu_state.changeSelfAlign(
+        AligmentTypes.center.valueOf(),
+      );
+    }
   });
 </script>
 
@@ -16,8 +32,9 @@
   </main>
 
   <hud>
+    <VaporwaveStartmenu />
+
     {#if window_state.window_width > 700}
-      <VaporwaveStartmenu />
       <VaporwaveTaskbar />
     {:else}
       <VaporwaveTaskbarPhone />

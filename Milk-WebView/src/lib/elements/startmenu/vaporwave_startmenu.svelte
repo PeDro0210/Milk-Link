@@ -44,6 +44,7 @@
     /* Auto layout */
     display: flex;
     flex-direction: row;
+    align-self: var(--aligment);
     align-items: flex-start;
     padding: 10px 10px 10px 10px;
     gap: 10px;

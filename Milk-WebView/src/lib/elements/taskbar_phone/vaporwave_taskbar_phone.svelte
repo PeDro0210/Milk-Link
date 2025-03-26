@@ -1,9 +1,10 @@
 <script lang="ts">
+  import { reactivity_startmenu_state } from "../../handlers/global_handlers/global_handler.svelte";
   import { start_button_attributes } from "../taskbar/utils/constant";
 </script>
 
 <div id="taskbar">
-  <button id="taskbar-home">
+  <button id="taskbar-home" onclick={reactivity_startmenu_state.toggle}>
     <img
       class="icon"
       src={start_button_attributes.icon}

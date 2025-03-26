@@ -6,6 +6,14 @@ export const reactivity_startmenu_state = $state({
   toggle: () => {
     reactivity_startmenu_state.slide_start_menu = !reactivity_startmenu_state.slide_start_menu;
   },
+  changeSelfAlign: (aligment_type: string) => {
+    let window_side = document.querySelector("#start-menu") as HTMLElement;
+    if (window_side != null) {
+      //Will just recieve the flex-start or the center
+      console.log(aligment_type)
+      window_side.style.setProperty("--aligment", aligment_type);
+    }
+  }
 });
 
 export const window_state = $state({

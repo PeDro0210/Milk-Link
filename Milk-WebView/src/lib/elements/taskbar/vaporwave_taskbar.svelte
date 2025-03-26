@@ -84,7 +84,6 @@
     scrollbar-width: thin;
 
     overflow-x: scroll;
-    pointer-events: auto;
 
     width: var(--window-width, 0);
 
