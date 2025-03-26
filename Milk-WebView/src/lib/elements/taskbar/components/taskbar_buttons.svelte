@@ -18,7 +18,7 @@
   style="--width:{width ?? '256px'}"
   onclick={on_click_function}
 >
-  <img class="icon-image" src={icon_url} alt="icon of the button" />
+  <img class="icon" src={icon_url} alt="icon of the button" />
   <text>{text ?? "PLACEHOLDER"}</text>
 </button>
 
@@ -43,7 +43,7 @@
     background: linear-gradient(90deg, #a33638 0%, #542738 100%);
 
     /* icon */
-    .icon-image {
+    .icon {
       box-sizing: border-box;
 
       width: 32px;

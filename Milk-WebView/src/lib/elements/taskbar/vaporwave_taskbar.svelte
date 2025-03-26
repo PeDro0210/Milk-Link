@@ -66,7 +66,10 @@
 
 <style lang="scss">
   #taskbar {
+    padding: 10px 10px;
     pointer-events: auto;
+
+    height: 5vh;
   }
 
   .windows-side {

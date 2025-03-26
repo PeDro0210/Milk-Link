@@ -59,15 +59,28 @@ body {
     flex-direction: row;
     align-items: center;
 
-    padding: 10px 10px;
-    gap: 0px;
-
     position: relative;
     width: 100%;
-    height: 56px;
 
     background: #0e0f14;
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+
+
+  .icon {
+    /* icon */
+
+    box-sizing: border-box;
+
+
+    border-width: 0px 1px 1px 0px;
+    border-style: solid;
+    border-color: #3a3a3a;
+
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
   }
 
   @keyframes flicker {

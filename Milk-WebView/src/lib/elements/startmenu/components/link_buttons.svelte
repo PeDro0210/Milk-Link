@@ -37,24 +37,6 @@
     order: 0;
     flex-grow: 0;
 
-    .icon {
-      /* icon */
-
-      box-sizing: border-box;
-
-      width: 32px;
-      height: 32px;
-
-      border-width: 0px 1px 1px 0px;
-      border-style: solid;
-      border-color: #3a3a3a;
-
-      /* Inside auto layout */
-      flex: none;
-      order: 0;
-      flex-grow: 0;
-    }
-
     /* text */
     text {
       width: 80%;
@@ -74,6 +56,11 @@
       flex: none;
       order: 1;
       flex-grow: 0;
+    }
+
+    .icon {
+      width: 32px;
+      height: 32px;
     }
   }
 </style>
