@@ -30,6 +30,7 @@
     padding: 0px;
     gap: 10px;
 
+    position: relative;
     width: 64px;
     height: 60px;
 

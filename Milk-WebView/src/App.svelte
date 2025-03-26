@@ -1,4 +1,5 @@
 <script lang="ts">
+  import VaporwaveAppbar from "./lib/elements/appbar_phone/vaporwave_appbar.svelte";
   import VaporwaveDesktop from "./lib/elements/desktop/vaporwave_desktop.svelte";
   import VaporwaveStartmenu from "./lib/elements/startmenu/vaporwave_startmenu.svelte";
   import VaporwaveTaskbar from "./lib/elements/taskbar/vaporwave_taskbar.svelte";
@@ -9,6 +10,7 @@
   } from "./lib/handlers/global_handlers/global_handler.svelte";
   import AligmentTypes from "./lib/handlers/global_handlers/utils.svelte";
 
+  console.log(import.meta.env.BACKEND_URL);
   $effect(() => {
     window_state.changeInnerWidth();
 
@@ -32,11 +34,13 @@
   </main>
 
   <hud>
-    <VaporwaveStartmenu />
-
     {#if window_state.window_width > 700}
+      <!--- need to re "instanciate" cause the AppBar--->
+      <VaporwaveStartmenu />
       <VaporwaveTaskbar />
     {:else}
+      <VaporwaveAppbar />
+      <VaporwaveStartmenu />
       <VaporwaveTaskbarPhone />
     {/if}
   </hud>

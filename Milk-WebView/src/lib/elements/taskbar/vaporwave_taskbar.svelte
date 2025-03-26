@@ -69,6 +69,7 @@
     padding: 10px 10px;
     pointer-events: auto;
 
+    position: relative;
     height: 5vh;
   }
 
