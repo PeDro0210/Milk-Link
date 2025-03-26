@@ -24,5 +24,5 @@ export const window_state = $state({
 });
 
 export const api = axios.create({
-  baseURL: import.meta.env.BACKEND_URL
+  baseURL: import.meta.env.VITE_BACKEND_URL
 })

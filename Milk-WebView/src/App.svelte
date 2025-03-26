@@ -10,7 +10,6 @@
   } from "./lib/handlers/global_handlers/global_handler.svelte";
   import AligmentTypes from "./lib/handlers/global_handlers/utils.svelte";
 
-  console.log(import.meta.env.BACKEND_URL);
   $effect(() => {
     window_state.changeInnerWidth();
 
