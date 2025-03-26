@@ -2,9 +2,9 @@ import type { LinkRelatedState } from "../../states/link_related_state.svelte";
 import type { Link } from "../../../models/link.svelte";
 import { api } from "../../global_handlers/global_handler.svelte";
 function startMenuHandler() {
-  let state: LinkRelatedState = {
+  let state: LinkRelatedState = $state({
     links_list: [],
-  }
+  })
 
 
 
@@ -25,7 +25,7 @@ function startMenuHandler() {
         }`
       }
     }).then((result: any) => {
-      state.links_list = result.data.data.getLinks as Array<Link>
+      state.links_list = result.data.data.getLinks as Array<Link>;
     })
 
   }

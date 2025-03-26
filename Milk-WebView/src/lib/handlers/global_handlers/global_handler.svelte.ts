@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const reactivity_startmenu_state = $state({
   //for managing the start menu reactivity
-  slide_start_menu: true,
+  slide_start_menu: false,
   toggle: () => {
     reactivity_startmenu_state.slide_start_menu = !reactivity_startmenu_state.slide_start_menu;
   },

@@ -4,6 +4,7 @@
   import { reactivity_startmenu_state } from "../../handlers/global_handlers/global_handler.svelte";
   import type { LinkRelatedState } from "../../handlers/states/link_related_state.svelte";
   import startMenuHandler from "../../handlers/elements_handlers/startmenu/startmenu_handler.svelte";
+  import { onMount } from "svelte";
 
   let options = { duration: 50, x: "75vh" };
 
@@ -11,7 +12,7 @@
 
   let state: LinkRelatedState = $state(handler.getState());
 
-  $effect(() => {
+  onMount(() => {
     handler.getLinks();
   });
 </script>
