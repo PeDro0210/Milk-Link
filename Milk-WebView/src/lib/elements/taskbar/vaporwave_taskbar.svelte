@@ -66,22 +66,7 @@
 
 <style lang="scss">
   #taskbar {
-    /* Auto layout */
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-
-    padding: 10px 10px;
-    gap: 0px;
-
-    position: relative;
-    width: 100%;
-    height: 56px;
-
     pointer-events: auto;
-
-    background: #0e0f14;
-    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
   }
 
   .windows-side {

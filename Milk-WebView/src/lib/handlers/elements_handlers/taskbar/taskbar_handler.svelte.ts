@@ -64,7 +64,7 @@ function taskbarHandler() {
       links_fetcher();
     },
     onChangeWidth: (window_width: number) => {
-      state.inner_width = window.addEventListener('resize', innerwidth_changer(window_width));
+      state.inner_width = innerwidth_changer(window_width);
     },
     getTime: () => {
       setInterval(() => {

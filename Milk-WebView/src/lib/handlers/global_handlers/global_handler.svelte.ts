@@ -16,5 +16,5 @@ export const window_state = $state({
 });
 
 export const api = axios.create({
-  baseURL: "http://localhost:5000"
+  baseURL: import.meta.env.BACKEND_URL
 })
