@@ -1,7 +1,7 @@
 <script lang="ts">
   import LinkButtons from "./components/link_buttons.svelte";
   import { slide } from "svelte/transition";
-  import { global_state } from "../../handlers/global_handlers/global_handler.svelte";
+  import { reactivity_startmenu_state } from "../../handlers/global_handlers/global_handler.svelte";
   import type { LinkRelatedState } from "../../handlers/states/link_related_state.svelte";
   import startMenuHandler from "../../handlers/elements_handlers/startmenu/startmenu_handler.svelte";
 
@@ -16,7 +16,7 @@
   });
 </script>
 
-{#if !global_state.slide_start_menu}
+{#if !reactivity_startmenu_state.slide_start_menu}
   <div id="start-menu" transition:slide={options}>
     <div id="title-bar">
       <text>Pedro's Link</text>

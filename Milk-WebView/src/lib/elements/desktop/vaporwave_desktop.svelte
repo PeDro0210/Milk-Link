@@ -9,7 +9,7 @@
   let state: LinkRelatedState = $state(handler.getState());
 
   onMount(async () => {
-    await handler.getLinks();
+    handler.getLinks();
   });
 
   $effect(() => {
@@ -25,7 +25,7 @@
       on_click_function={() => {
         window.open(link_object.link, "_blank");
       }}
-      key={link_object.key}
+      key={link_object.key as number}
     />
   {/each}
 </div>

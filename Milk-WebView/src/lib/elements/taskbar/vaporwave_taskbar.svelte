@@ -4,7 +4,7 @@
   import { start_button_attributes } from "./utils/constant";
   import TaskbarClock from "./components/taskbar_clock.svelte";
   import { onMount } from "svelte";
-  import { global_state } from "../../handlers/global_handlers/global_handler.svelte";
+  import { reactivity_startmenu_state } from "../../handlers/global_handlers/global_handler.svelte";
   import type { TaskBarState } from "../../handlers/states/taskbar_state.svelte";
   import taskbarHandler from "../../handlers/elements_handlers/taskbar/taskbar_handler.svelte";
 
@@ -19,12 +19,8 @@
     handler.onChangeWidth(window_width);
   };
 
-  let fetch_links = async () => {
-    handler.getLinks();
-  };
-
   onMount(() => {
-    fetch_links();
+    handler.getLinks();
     window_resizing();
   });
 
@@ -45,7 +41,7 @@
     icon_url={start_button_attributes.icon}
     width={start_button_attributes.width}
     text={start_button_attributes.text}
-    on_click_function={global_state.toggle}
+    on_click_function={reactivity_startmenu_state.toggle}
   />
 
   <Separator />

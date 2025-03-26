@@ -43,6 +43,7 @@ function taskbarHandler() {
   //Changes the innerwidth of the taskbar and changes css variable of the window-width 
   //Ik i'm using scss, but GRAWWWWWWWWW, PREPROCESSORS
   let innerwidth_changer = (window_inner_width: number) => {
+
     let new_inner_width = window_inner_width - 335 + "px"  // Adjust the width calculation as needed
 
     let window_side = document.querySelector(".windows-side") as HTMLElement;
@@ -63,7 +64,7 @@ function taskbarHandler() {
       links_fetcher();
     },
     onChangeWidth: (window_width: number) => {
-      state.inner_width = innerwidth_changer(window_width);
+      state.inner_width = window.addEventListener('resize', innerwidth_changer(window_width));
     },
     getTime: () => {
       setInterval(() => {
