@@ -12,7 +12,8 @@ services:
       #TODO: Before deploying, do the port fowarding
       - "5173:5173"
     env_file:
-      - env_variables/milk-webview/.env
+      #I didn't find a practical way of symlinking the env_variables dir while in the container
+      - Milk-WebView/.env
     depends_on:
       - backend
 
