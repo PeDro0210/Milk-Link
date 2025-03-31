@@ -33,30 +33,30 @@ impl LinkRepo {
         match cmd("FT.SEARCH")
             .arg("links:index")
             .arg("*")
-            .arg("RETURN")
-            .arg("5")
-            .arg("$.link")
-            .arg("$.title")
-            .arg("$.window_photo_url")
-            .arg("$.taskbar_icon_url")
-            .arg("$.startmenu_icon_url")
             .query::<Vec<RedisValue>>(&mut con)
         {
-            Ok(mut data) => {
-                data.remove(0);
+            Ok(data) => {
+                //For a more abstracted way of using it
+                let mut data_iterator = data.iter();
 
-                println!("{data:?}");
-                //Cast the serialize Json in to the Link Sturct
-                //TODO: remove the titles
-                data.iter().for_each(|value| {
-                    //Checks if it has the structure path, json
-                    match from_redis_value::<Vec<String>>(value) {
-                        Ok(value) => {
-                            link_lists.push(from_str::<Link>(value.index(1).as_str()).unwrap())
-                        }
-                        Err(error) => println!("Nothing to worry about"),
+                //For having the notion if the value of the iterator is a redis-key
+                let mut key_flag: bool = true;
+                //Remving the quantity of items cause redis returns it for some reason
+                data_iterator.next();
+
+                //I wanted to go with the declarative way, but of borrowing stuff,
+                let _ = data_iterator.map(|value| match key_flag {
+                    true => {
+                        //Preparing for the next one which will be a redis array
+                        key_flag = false;
                     }
-                })
+                    false => {
+                        let nested_data = from_redis_value::<Vec<String>>(value).unwrap();
+                        //Refactor this to be more compact
+                        let json_value = from_str::<Link>(nested_data[1].as_str()).unwrap();
+                        link_lists.push(json_value);
+                    }
+                });
             }
             Err(e) => panic!("Can't get list of names, ERROR:{:}", e),
         };
