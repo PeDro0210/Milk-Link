@@ -2,12 +2,12 @@
 
 ## Backend
 
-- [] use the index query
+- [X] use the index query
 
 ## WebView
 
-- [] Make a initial load
-
+- [X] Make a initial load
+- [] Make loading page
 ## Redis
 
-- [] Recreate index
+- [X] Recreate index
