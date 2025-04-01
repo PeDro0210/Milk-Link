@@ -1,6 +1,7 @@
 import type { Link } from "../../../models/link.svelte";
 import type { TaskBarState } from "../../states/taskbar_state.svelte";
-import { api } from "../../global_handlers/global_handler.svelte";
+import { api, loading_state } from "../../global_handlers/global_handler.svelte";
+import { LoadableElements } from "../../global_handlers/utils.svelte";
 
 /*
  *  First rule before anything, simplicty before doing weird sheningangs,
@@ -36,6 +37,7 @@ function taskbarHandler() {
       }
     }).then((result: any) => {
       state.links_list = result.data.data.getLinks as Array<Link>
+      loading_state.setLoaded(LoadableElements.taskbar);
     })
 
   };

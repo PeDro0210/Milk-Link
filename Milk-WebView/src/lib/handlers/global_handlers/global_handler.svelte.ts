@@ -1,4 +1,5 @@
 import axios from "axios";
+import type { LoadableElements } from "./utils.svelte";
 
 export const reactivity_startmenu_state = $state({
   //for managing the start menu reactivity
@@ -15,6 +16,18 @@ export const reactivity_startmenu_state = $state({
     }
   }
 });
+
+export const loading_state = $state({
+  loaded_elements: [
+    { loaded: false },
+    { loaded: false },
+    { loaded: false }
+  ],
+  setLoaded: (loaded_element: LoadableElements) => loading_state.loaded_elements[loaded_element].loaded = true,
+  checkLoadedElements: () => {
+    return loading_state.loaded_elements.every(({ loaded }) => loaded === true);
+  }
+})
 
 export const window_state = $state({
   window_width: window.innerWidth,

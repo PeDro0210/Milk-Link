@@ -1,6 +1,7 @@
 <script lang="ts">
   import VaporwaveAppbar from "./lib/elements/appbar_phone/vaporwave_appbar.svelte";
   import VaporwaveDesktop from "./lib/elements/desktop/vaporwave_desktop.svelte";
+  import MilkLoadingScreen from "./lib/elements/loading/milk_loading_screen.svelte";
   import VaporwaveStartmenu from "./lib/elements/startmenu/vaporwave_startmenu.svelte";
   import VaporwaveTaskbar from "./lib/elements/taskbar/vaporwave_taskbar.svelte";
   import VaporwaveTaskbarPhone from "./lib/elements/taskbar_phone/vaporwave_taskbar_phone.svelte";
@@ -8,7 +9,7 @@
     reactivity_startmenu_state,
     window_state,
   } from "./lib/handlers/global_handlers/global_handler.svelte";
-  import AligmentTypes from "./lib/handlers/global_handlers/utils.svelte";
+  import { AligmentTypes } from "./lib/handlers/global_handlers/utils.svelte";
 
   $effect(() => {
     window_state.changeInnerWidth();
@@ -28,6 +29,11 @@
 </script>
 
 <crt-filter>
+  <!---
+  the loading screen will unload when all the elements are load
+  --->
+
+  <MilkLoadingScreen />
   <main>
     <VaporwaveDesktop />
   </main>
