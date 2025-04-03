@@ -1,0 +1,44 @@
+services:
+  backend:
+    build: ./Milk-Backend
+    ports:
+      - "5000:5000"
+    env_file:
+      - env_variables/milk-backend/.env
+
+  webview:
+    build: ./Milk-WebView
+    ports:
+      #TODO: Before deploying, do the port fowarding
+      - "5173:5173"
+    env_file:
+      #I didn't find a practical way of symlinking the env_variables dir while in the container
+      - Milk-WebView/.env
+    depends_on:
+      - backend
+
+  redis:
+    image: redis/redis-stack-server
+    # I'll explain each one of this arguments:
+    # --requirepasss: for adding the password (we don't need different users)
+    # --loadmodule: for having different redis modules, in this case the Re-Json
+    # --apendonly: for not flushing whenever the redis-server get's down
+    # --dir: for the directory route which the data will be saved
+    # --dbfilename: in this case is just for creating the dump file
+    command:
+      - /bin/sh
+      - -c
+      - redis-server --requirepass "$${REDIS_PASSCODE:?1234}" --loadmodule /opt/redis-stack/lib/redisearch.so --loadmodule /opt/redis-stack/lib/rejson.so --appendonly yes --dir /data --dbfilename dump.rdb
+    ports:
+      - "6379:6379"
+    volumes:
+      - db:/data
+    env_file:
+      - env_variables/redis/.env
+
+networks:
+  mynetwork:
+    driver: bridge
+  
+volumes:
+  db:
