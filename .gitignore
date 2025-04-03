@@ -1,2 +1,4 @@
 env_variables/
 *.env
+Dockerfile
+compose.yml
