@@ -33,7 +33,9 @@
   the loading screen will unload when all the elements are load
   --->
 
-  <MilkLoadingScreen />
+  {#if window_state.window_width < 700}
+    <MilkLoadingScreen />
+  {/if}
   <main>
     <VaporwaveDesktop />
   </main>
