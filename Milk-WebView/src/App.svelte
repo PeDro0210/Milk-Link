@@ -33,7 +33,7 @@
   the loading screen will unload when all the elements are load
   --->
 
-  {#if window_state.window_width < 700}
+  {#if window_state.window_width > 700}
     <MilkLoadingScreen />
   {/if}
   <main>
