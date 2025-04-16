@@ -7,7 +7,8 @@
 ## WebView
 
 - [X] Make a initial load
-- [] Make loading page
+- [X] Make loading page
+
 ## Redis
 
 - [X] Recreate index
