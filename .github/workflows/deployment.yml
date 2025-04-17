@@ -15,7 +15,7 @@ jobs:
       - run: echo "${{ secrets.PERSONAL_VM_KEY}}" > ~/.keys/PERSONANAL_VM_KEY.pem &&  chmod 600 ~/.keys/PERSONANAL_VM_KEY.pem 
       - run: cat ~/.keys/PERSONAL_VM_KEY.pem
       - name: entering personal vm
-        run: ssh -i ~/.keys/PERSONANAL_VM_KEY.pem ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
+        run: ssh -i ~/.keys/PERSONANAL_VM_KEY.pem -T ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
       - name: pulling new code
         run: git pull
       - name: Re-Runing compose
