@@ -13,7 +13,7 @@
   });
 
   $effect(() => {
-    console.log(state.links_list);
+    console.log("yes" + state.links_list);
   });
 </script>
 
