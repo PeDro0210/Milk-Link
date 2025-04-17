@@ -16,6 +16,7 @@ jobs:
       - run: cat ~/.keys/PERSONAL_VM_KEY.pem
       - name: entering personal vm
         run:  ssh -i ~/.keys/PERSONANAL_VM_KEY.pem -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
-              'z milk
+              'mkidr ~/workflow
+              z milk
               git pull
               docker-compose down'
