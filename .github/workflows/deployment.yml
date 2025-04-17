@@ -18,8 +18,7 @@ jobs:
         run: |
             ssh -i ~/.keys/PERSONANAL_VM_KEY.pem -o StrictHostKeyChecking=no \
               ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
-              mkdir -p ~/workflow
-              z milk
+              cd Milk-Link
               git pull
               docker-compose down
             EOF
