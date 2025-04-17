@@ -15,4 +15,7 @@ jobs:
       - run: echo "${{ secrets.PERSONAL_VM_KEY}}" >> ~/.keys/PERSONANAL_VM_KEY.pem &&  chmod 400 ~/.keys/PERSONANAL_VM_KEY.pem 
       - run: cat ~/.keys/PERSONAL_VM_KEY.pem
       - name: entering personal vm
-        run:  ssh -i ~/.keys/PERSONANAL_VM_KEY.pem -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "mkidr ~/work"
+        run:  ssh -i ~/.keys/PERSONANAL_VM_KEY.pem -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
+              z milk
+              git pull
+              docker-compose down'
