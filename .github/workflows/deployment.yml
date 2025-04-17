@@ -10,11 +10,10 @@ jobs:
   runs-on: ubuntu-latest
   steps:
     - uses: actions/checkout@v3
-    - run: |
-      touch ~/.keys
-      cd ~/.keys
-      touch PERSONAL_VM_KEY.pem
-      echo "${{ secrets.PERSONAL_VM_KEY}}" > ~/.keys/PERSONANAL_VM_KEY.pem &&  chmod 600 ~/.keys/PERSONANAL_VM_KEY.pem 
+    - run: touch ~/.keys
+    - run: cd ~/.keys
+    - run: touch PERSONAL_VM_KEY.pem
+    - run: echo "${{ secrets.PERSONAL_VM_KEY}}" > ~/.keys/PERSONANAL_VM_KEY.pem &&  chmod 600 ~/.keys/PERSONANAL_VM_KEY.pem 
     - name: entering personal vm
       run: ssh -i ~/.keys/PERSONANAL_VM_KEY.pem ${{ secrets.SSH_USER }}@${{ secres.SSH_HOST }}
     - name: pulling new code
