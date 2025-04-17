@@ -15,8 +15,6 @@ jobs:
       - run: echo "${{ secrets.PERSONAL_VM_KEY}}" >> ~/.keys/PERSONANAL_VM_KEY.pem &&  chmod 400 ~/.keys/PERSONANAL_VM_KEY.pem 
       - run: cat ~/.keys/PERSONAL_VM_KEY.pem
       - name: entering personal vm
-        run: ssh -i ~/.keys/PERSONANAL_VM_KEY.pem -o StrictHostKeyChecking=no -T ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
-      - name: pulling new code
-        run: git pull
-      - name: Re-Runing compose
-        run: docker-compose up --build
+        run: | ssh -i ~/.keys/PERSONANAL_VM_KEY.pem -o StrictHostKeyChecking=no -T ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
+               git pull
+               docker-compose up --build
