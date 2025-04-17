@@ -10,13 +10,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: mkdir ~/runner/.keys
-      - run: cd ~/runner/.keys
+      - run: mkdir ~/.keys
+      - run: cd ~/.keys
       - run: touch PERSONAL_VM_KEY.pem
-      - run: echo "${{ secrets.PERSONAL_VM_KEY}}" > ~/runner/.keys/PERSONANAL_VM_KEY.pem &&  chmod 600 ~/runner/.keys/PERSONANAL_VM_KEY.pem 
-      - run: cat ~/runner/.keys/PERSONAL_VM_KEY.pem
+      - run: echo "${{ secrets.PERSONAL_VM_KEY}}" > ~/.keys/PERSONANAL_VM_KEY.pem &&  chmod 600 ~/.keys/PERSONANAL_VM_KEY.pem 
+      - run: cat ~/.keys/PERSONAL_VM_KEY.pem
       - name: entering personal vm
-        run: ssh -i ~/runner/.keys/PERSONANAL_VM_KEY.pem ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
+        run: ssh -i ~/.keys/PERSONANAL_VM_KEY.pem ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
       - name: pulling new code
         run: git pull
       - name: Re-Runing compose
