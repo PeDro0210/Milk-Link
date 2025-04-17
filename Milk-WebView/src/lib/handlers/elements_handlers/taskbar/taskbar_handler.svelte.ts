@@ -21,7 +21,7 @@ function taskbarHandler() {
 
   //TODO: implement the API fetching
   let links_fetcher = async () => {
-    api({
+    return api({
       url: "/graphql",
       method: "post",
       data: {
@@ -35,11 +35,7 @@ function taskbarHandler() {
           }
         }`
       }
-    }).then((result: any) => {
-      state.links_list = result.data.data.getLinks as Array<Link>
-      loading_state.setLoaded(LoadableElements.taskbar);
     })
-
   };
 
   //Changes the innerwidth of the taskbar and changes css variable of the window-width 
@@ -63,7 +59,11 @@ function taskbarHandler() {
   return {
     getState: state_getter,
     getLinks: async () => {
-      links_fetcher();
+      links_fetcher()
+        .then((result: any) => {
+          state.links_list = result.data.data.getLinks as Array<Link>
+          loading_state.setLoaded(LoadableElements.taskbar);
+        });
     },
     onChangeWidth: (window_width: number) => {
       state.inner_width = innerwidth_changer(window_width);

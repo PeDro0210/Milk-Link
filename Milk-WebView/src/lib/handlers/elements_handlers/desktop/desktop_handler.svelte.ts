@@ -12,7 +12,7 @@ function desktopHandler() {
 
 
   let fetcher = async () => {
-    api({
+    return api({
       url: "/graphql",
       method: "post",
       data: {
@@ -26,16 +26,18 @@ function desktopHandler() {
           }
         }`
       }
-    }).then((result: any) => {
-      state.links_list = result.data.data.getLinks as Array<Link>;
-      loading_state.setLoaded(LoadableElements.desktop);
-    })
+    });
   }
 
   return {
     getState: () => { return state },
     getLinks: async () => {
-      fetcher();
+      fetcher()
+        .then((result: any) => {
+          state.links_list = result.data.data.getLinks as Array<Link>;
+        });
+      loading_state.setLoaded(LoadableElements.desktop);
+
     }
   };
 

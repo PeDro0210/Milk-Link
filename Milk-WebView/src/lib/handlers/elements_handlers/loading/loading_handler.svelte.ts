@@ -14,8 +14,6 @@ function loadingHandler() {
         state.loaded = true;
       }, 3000)
     }
-    console.log(state.loaded);
-
   }
 
   return {

@@ -9,7 +9,7 @@ function startMenuHandler() {
 
 
   let link_fetcher = async () => {
-    api({
+    return api({
       url: "/graphql",
       method: "post",
       data: {
@@ -23,17 +23,17 @@ function startMenuHandler() {
           }
         }`
       }
-    }).then((result: any) => {
-      state.links_list = result.data.data.getLinks as Array<Link>;
-      loading_state.setLoaded(LoadableElements.startmenu);
     })
-
   }
 
   return {
     getState: () => { return state; },
     getLinks: async () => {
-      link_fetcher();
+      link_fetcher()
+        .then((result: any) => {
+          state.links_list = result.data.data.getLinks as Array<Link>;
+          loading_state.setLoaded(LoadableElements.startmenu);
+        });
     }
   };
 }
