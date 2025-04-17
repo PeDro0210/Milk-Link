@@ -16,8 +16,7 @@ jobs:
       - run: cat ~/.keys/PERSONAL_VM_KEY.pem
       - name: entering personal vm
         run: |
-            ssh -i ~/.keys/PERSONANAL_VM_KEY.pem -o StrictHostKeyChecking=no \
-              ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
+            ssh -i ~/.keys/PERSONANAL_VM_KEY.pem -o StrictHostKeyChecking=no  ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
               cd Milk-Link
               git pull
               docker-compose down
