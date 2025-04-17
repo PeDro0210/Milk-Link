@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: mkdir ~/.keys
+      - run: mkdir ~/runner/.keys
       - run: cd ~/runner/.keys
       - run: touch PERSONAL_VM_KEY.pem
       - run: echo "${{ secrets.PERSONAL_VM_KEY}}" > ~/runner/.keys/PERSONANAL_VM_KEY.pem &&  chmod 600 ~/runner/.keys/PERSONANAL_VM_KEY.pem 
