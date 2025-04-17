@@ -11,10 +11,6 @@
   onMount(async () => {
     handler.getLinks();
   });
-
-  $effect(() => {
-    console.log("yes" + state.links_list);
-  });
 </script>
 
 <div class="desktop">

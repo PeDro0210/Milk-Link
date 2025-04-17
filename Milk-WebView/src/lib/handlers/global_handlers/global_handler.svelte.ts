@@ -11,7 +11,6 @@ export const reactivity_startmenu_state = $state({
     let window_side = document.querySelector("#start-menu") as HTMLElement;
     if (window_side != null) {
       //Will just recieve the flex-start or the center
-      console.log(aligment_type)
       window_side.style.setProperty("--aligment", aligment_type);
     }
   }
