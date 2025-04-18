@@ -16,7 +16,9 @@
 </script>
 
 {#if !state.loaded}
-  <loadin-screen transition:fade={options}>Loading...</loadin-screen>
+  <loadin-screen transition:fade={options}>
+    <p style="position: relative; left:10px; inline-size: 1.1;">Loading...</p>
+  </loadin-screen>
 {/if}
 
 <style lang="scss">

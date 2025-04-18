@@ -6,6 +6,7 @@
   import VaporwaveTaskbar from "./lib/elements/taskbar/vaporwave_taskbar.svelte";
   import VaporwaveTaskbarPhone from "./lib/elements/taskbar_phone/vaporwave_taskbar_phone.svelte";
   import {
+    loading_state,
     reactivity_startmenu_state,
     window_state,
   } from "./lib/handlers/global_handlers/global_handler.svelte";
@@ -33,7 +34,7 @@
   the loading screen will unload when all the elements are load
   --->
 
-  {#if window_state.window_width > 700}
+  {#if loading_state.checkLoadedElements()}
     <MilkLoadingScreen />
   {/if}
   <main>

@@ -1,9 +1,7 @@
-use std::ops::Index;
-
 //TODO: implement redis later in this repo
 use crate::{config::Env, schemas::link::Link};
 
-use redis::{cmd, from_redis_value, Client, JsonCommands, Value as RedisValue};
+use redis::{cmd, from_redis_value, Client, Value as RedisValue};
 use serde_json::from_str;
 
 pub struct LinkRepo {

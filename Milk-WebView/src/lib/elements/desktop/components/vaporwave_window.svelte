@@ -47,7 +47,12 @@
   >
     <text>{text}</text>
     <div class="button-row">
-      <WindowButton icon={minimize_button} on_click_function={() => {}} />
+      <WindowButton
+        icon={minimize_button}
+        on_click_function={() => {
+          handler.onShowError();
+        }}
+      />
       <WindowButton
         icon={close_button}
         on_click_function={() => {
