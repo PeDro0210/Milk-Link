@@ -22,6 +22,6 @@
     justify-content: center;
     position: absolute;
     top: 0;
-    height: 5vh;
+    height: 5.5vh;
   }
 </style>

@@ -14,6 +14,7 @@
 
   onMount(() => {
     handler.getLinks();
+    handler.setLoaded;
   });
 </script>
 

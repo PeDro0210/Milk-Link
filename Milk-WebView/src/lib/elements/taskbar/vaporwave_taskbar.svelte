@@ -21,6 +21,7 @@
 
   onMount(() => {
     handler.getLinks();
+    handler.setLoaded;
     window_resizing();
   });
 

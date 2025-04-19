@@ -29,6 +29,10 @@ function desktopHandler() {
     });
   }
 
+  let loaderSetter = () => {
+    loading_state.setLoaded(LoadableElements.desktop);
+  }
+
   return {
     getState: () => { return state },
     getLinks: async () => {
@@ -36,9 +40,9 @@ function desktopHandler() {
         .then((result: any) => {
           state.links_list = result.data.data.getLinks as Array<Link>;
         });
-      loading_state.setLoaded(LoadableElements.desktop);
 
-    }
+    },
+    setLoaded: loaderSetter()
   };
 
 }

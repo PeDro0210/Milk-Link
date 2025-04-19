@@ -55,6 +55,11 @@ function taskbarHandler() {
     return new Date();
   };
 
+  //separting the load function from the fetcher, cause in phone view it won't call the getLoad on the taskbar
+  let loaderSetter = () => {
+    loading_state.setLoaded(LoadableElements.taskbar);
+  };
+
 
   return {
     getState: state_getter,
@@ -62,7 +67,6 @@ function taskbarHandler() {
       links_fetcher()
         .then((result: any) => {
           state.links_list = result.data.data.getLinks as Array<Link>
-          loading_state.setLoaded(LoadableElements.taskbar);
         });
     },
     onChangeWidth: (window_width: number) => {
@@ -73,8 +77,9 @@ function taskbarHandler() {
         state.time = time_fetcher();
       }, 6000);
 
-    }
-  }
+    },
+    setLoaded: loaderSetter()
+  };
 
 }
 

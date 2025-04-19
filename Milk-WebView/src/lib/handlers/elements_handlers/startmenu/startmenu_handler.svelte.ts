@@ -5,7 +5,7 @@ import { LoadableElements } from "../../global_handlers/utils.svelte";
 function startMenuHandler() {
   let state: LinkRelatedState = $state({
     links_list: [],
-  })
+  });
 
 
   let link_fetcher = async () => {
@@ -24,7 +24,13 @@ function startMenuHandler() {
         }`
       }
     })
-  }
+  };
+
+  let loaderSetter = () => {
+    loading_state.setLoaded(LoadableElements.startmenu);
+  };
+
+
 
   return {
     getState: () => { return state; },
@@ -32,9 +38,9 @@ function startMenuHandler() {
       link_fetcher()
         .then((result: any) => {
           state.links_list = result.data.data.getLinks as Array<Link>;
-          loading_state.setLoaded(LoadableElements.startmenu);
         });
-    }
+    },
+    setLoaded: loaderSetter()
   };
 }
 

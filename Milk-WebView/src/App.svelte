@@ -37,6 +37,7 @@
   {#if loading_state.checkLoadedElements()}
     <MilkLoadingScreen />
   {/if}
+
   <main>
     <VaporwaveDesktop />
   </main>

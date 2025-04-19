@@ -9,11 +9,9 @@ function loadingHandler() {
 
 
   let load = (loaded: boolean) => {
-    if (loaded) {
-      setTimeout(() => {
-        state.loaded = true;
-      }, 3000)
-    }
+    setTimeout(() => {
+      state.loaded = loaded;
+    }, 3000)
   }
 
   return {

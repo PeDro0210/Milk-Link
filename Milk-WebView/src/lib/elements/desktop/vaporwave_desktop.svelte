@@ -10,6 +10,7 @@
 
   onMount(async () => {
     handler.getLinks();
+    handler.setLoaded;
   });
 </script>
 
