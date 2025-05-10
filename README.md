@@ -13,3 +13,8 @@
 - Phone View
 
 <p align="center"><img src="https://firebasestorage.googleapis.com/v0/b/fatipage-a0067.firebasestorage.app/o/milk-link%2Freadme%2Fswappy-20250419-222146.png?alt=media&token=386d74d9-b619-4d9c-96fc-ac7bb04bc0ec"></p>
+
+
+<h3 align="center">Next updates</h3>
+
+- idle animation for windows
