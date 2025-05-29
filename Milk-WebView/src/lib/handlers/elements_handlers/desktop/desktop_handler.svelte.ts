@@ -1,15 +1,15 @@
 import type { LinkRelatedState } from "../../states/link_related_state.svelte";
 import type { Link } from "../../../models/link.svelte";
-import { api, loading_state } from "../../global_handlers/global_handler.svelte";
+import {
+  api,
+  loading_state,
+} from "../../global_handlers/global_handler.svelte";
 import { LoadableElements } from "../../global_handlers/utils.svelte";
 
-
 function desktopHandler() {
-
   let state: LinkRelatedState = $state({
     links_list: [],
   });
-
 
   let fetcher = async () => {
     return api({
@@ -24,27 +24,27 @@ function desktopHandler() {
             link
             windowPhotoUrl
           }
-        }`
-      }
+        }`,
+      },
     });
-  }
+  };
 
   let loaderSetter = () => {
     loading_state.setLoaded(LoadableElements.desktop);
-  }
+  };
 
   return {
-    getState: () => { return state },
+    getState: () => {
+      return state;
+    },
     getLinks: async () => {
       fetcher()
         .then((result: any) => {
-          state.links_list = result.data.data.getLinks as Array<Link>;
+          state.links_list = result.data.data.getLinks as Link[];
         });
-
     },
-    setLoaded: loaderSetter()
+    setLoaded: loaderSetter(),
   };
-
 }
 
 export default desktopHandler;

@@ -1,6 +1,9 @@
 import type { Link } from "../../../models/link.svelte";
 import type { TaskBarState } from "../../states/taskbar_state.svelte";
-import { api, loading_state } from "../../global_handlers/global_handler.svelte";
+import {
+  api,
+  loading_state,
+} from "../../global_handlers/global_handler.svelte";
 import { LoadableElements } from "../../global_handlers/utils.svelte";
 
 /*
@@ -8,7 +11,6 @@ import { LoadableElements } from "../../global_handlers/utils.svelte";
  *  The only way those are acceptable, is if they are faster, then... is just useless
  */
 function taskbarHandler() {
-
   let state: TaskBarState = $state({
     links_list: [],
     inner_width: "",
@@ -17,7 +19,7 @@ function taskbarHandler() {
 
   let state_getter = () => {
     return state;
-  }
+  };
 
   //TODO: implement the API fetching
   let links_fetcher = async () => {
@@ -33,22 +35,20 @@ function taskbarHandler() {
             link
             taskbarIconUrl
           }
-        }`
-      }
-    })
+        }`,
+      },
+    });
   };
 
-  //Changes the innerwidth of the taskbar and changes css variable of the window-width 
+  //Changes the innerwidth of the taskbar and changes css variable of the window-width
   //Ik i'm using scss, but GRAWWWWWWWWW, PREPROCESSORS
   let innerwidth_changer = (window_inner_width: number) => {
-
-    let new_inner_width = window_inner_width - 335 + "px"  // Adjust the width calculation as needed
+    let new_inner_width = window_inner_width - 335 + "px"; // Adjust the width calculation as needed
 
     let window_side = document.querySelector(".windows-side") as HTMLElement;
     window_side.style.setProperty("--window-width", new_inner_width);
 
     return new_inner_width;
-
   };
 
   let time_fetcher = () => {
@@ -60,13 +60,12 @@ function taskbarHandler() {
     loading_state.setLoaded(LoadableElements.taskbar);
   };
 
-
   return {
     getState: state_getter,
     getLinks: async () => {
       links_fetcher()
         .then((result: any) => {
-          state.links_list = result.data.data.getLinks as Array<Link>
+          state.links_list = result.data.data.getLinks as Link[];
         });
     },
     onChangeWidth: (window_width: number) => {
@@ -76,11 +75,9 @@ function taskbarHandler() {
       setInterval(() => {
         state.time = time_fetcher();
       }, 6000);
-
     },
-    setLoaded: loaderSetter()
+    setLoaded: loaderSetter(),
   };
-
 }
 
 export default taskbarHandler;
