@@ -164,6 +164,7 @@
       border-width: 2px 1px 1px 2px;
       border-style: solid;
       border-color: #3a3a3a;
+      opacity: 0.5;
       box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.25);
 
       /* Inside auto layout */
@@ -172,10 +173,7 @@
       flex-grow: 0;
       &:hover {
         cursor: pointer;
-      }
-
-      &:hover {
-        border-width: 0px 0px 0px 0px;
+        opacity: 1;
       }
     }
   }
