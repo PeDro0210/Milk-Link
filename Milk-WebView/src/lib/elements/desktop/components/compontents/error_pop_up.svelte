@@ -31,6 +31,7 @@
     right: 10px;
     bottom: 10px;
 
+    z-index: 25;
     background: #a13633;
     border: 1px solid #3a3a3a;
   }
