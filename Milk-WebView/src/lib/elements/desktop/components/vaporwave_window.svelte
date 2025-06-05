@@ -93,7 +93,7 @@
     background: #0e0f14;
     border-width: 0px 2px 2px 0px;
     border-style: solid;
-    border-color: #3a3a3a;
+    border-color: var(--border-color);
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
 
     .app-bar {
