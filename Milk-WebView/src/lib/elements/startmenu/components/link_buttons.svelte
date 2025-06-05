@@ -30,7 +30,7 @@
     height: 56px;
 
     background: linear-gradient(90deg, #a33638 0%, #542738 100%);
-    border-bottom: 2px solid #3a3a3a;
+    border-bottom: 2px solid var(--border-color);
 
     /* Inside auto layout */
     flex: none;

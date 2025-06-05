@@ -25,8 +25,8 @@
     width: 4px;
     height: 36px;
 
-    border-left: 1px solid #3a3a3a;
-    border-right: 1px solid #3a3a3a;
+    border-left: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
 
     /* Inside auto layout */
     flex: none;

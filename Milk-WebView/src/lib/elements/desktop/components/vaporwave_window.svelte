@@ -163,7 +163,7 @@
 
       border-width: 2px 1px 1px 2px;
       border-style: solid;
-      border-color: #3a3a3a;
+      border-color: var(--border-color);
       opacity: 0.5;
       box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.25);
 

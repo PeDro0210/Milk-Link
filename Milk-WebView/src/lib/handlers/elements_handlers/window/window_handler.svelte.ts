@@ -1,19 +1,17 @@
 import type { WindowState } from "../../states/window_state.svelte";
 
-
 /*
  *  First rule before anything, simplicty before doing weird sheningangs,
  *  The only way those are acceptable, is if they are faster, then... is just useless
  */
 function windowHandler(window: Window & typeof globalThis, key: number) {
-
   let state: WindowState = $state({
     x_position: window.localStorage.getItem("positionX" + key) ??
       (-750 + 150 * (key + 1)).toString(),
     y_position: window.localStorage.getItem("positionY" + key) ??
       (-600 + 100 * (key + 2)).toString(),
     appbar_grabbed: false,
-    show_error_pop_up: false
+    show_error_pop_up: false,
   });
 
   let window_position_changer = (e: any): string[] => {
@@ -30,7 +28,6 @@ function windowHandler(window: Window & typeof globalThis, key: number) {
 
       //deparsing
       return [_x_pos.toString(), _y_pos.toString()];
-
     }
     return [state.x_position, state.y_position];
   };
@@ -46,12 +43,12 @@ function windowHandler(window: Window & typeof globalThis, key: number) {
     });
 
     e.currentTarget.style.zIndex = "1";
-
   };
 
-
   return {
-    getState: () => { return state; },
+    getState: () => {
+      return state;
+    },
     onMoveToFront: (e: any) => {
       move_to_front(e);
     },
@@ -66,11 +63,8 @@ function windowHandler(window: Window & typeof globalThis, key: number) {
       setTimeout(() => {
         state.show_error_pop_up = false;
       }, 3000);
-
     },
-
-  }
-
+  };
 }
 
 export default windowHandler;

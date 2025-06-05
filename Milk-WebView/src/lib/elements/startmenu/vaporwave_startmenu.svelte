@@ -57,7 +57,7 @@
     pointer-events: auto;
 
     background: #0e0f14;
-    border-right: 2px solid #3a3a3a;
+    border-right: 2px solid var(--border-color);
     box-shadow: 4px 0px 4px rgba(0, 0, 0, 0.25);
   }
 
