@@ -96,6 +96,10 @@
     border-color: var(--border-color);
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
 
+    offset-path: path("M -1 0 C -1 -2 3 -2 3 0 C 3 2 -1 2 -1 0");
+    offset-rotate: 0deg;
+    animation: move 3000ms infinite forwards ease-in-out;
+
     .app-bar {
       /* little-window-bar */
 
