@@ -98,8 +98,16 @@
 
     offset-path: path("M -1 0 C -1 -2 3 -2 3 0 C 3 2 -1 2 -1 0");
     offset-rotate: 0deg;
-    animation: move 3000ms infinite forwards ease-in-out;
+    animation: move 3000ms infinite forwards linear;
 
+    @keyframes move {
+      0% {
+        offset-distance: 0%;
+      }
+      100% {
+        offset-distance: 100%;
+      }
+    }
     .app-bar {
       /* little-window-bar */
 
