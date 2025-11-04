@@ -1,0 +1,18 @@
+# Compose for staging and building images
+services:
+  backend:
+    build: ./milk-backend
+    ports:
+      - "${BACKEND_PORT}:${BACKEND_PORT}"
+    env_file:
+      - .env
+  webview:
+    build:       
+      context: ./milk-webview
+      args:
+        VITE_BACKEND_URL: "${VITE_BACKEND_URL}"
+    ports:
+      - "${WEBVIEW_PORT}:5174"
+    depends_on:
+      - backend
+

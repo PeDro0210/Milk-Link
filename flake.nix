@@ -38,7 +38,7 @@
             rust-analyzer
             clippy
             rustfmt
-            taplo-lsp # lsp for cargo.toml
+            taplo # lsp for cargo.toml
 
             svelte-language-server
             nodejs
@@ -58,7 +58,7 @@
 
             LD_LIBRARY_PATH = base_lib;
 
-            LIBCLANG_PATH = "${pkgs.llvmPackages_15.libclang.lib}/lib";
+            LIBCLANG_PATH = "${pkgs.llvmPackages.libclang.lib}/lib";
           };
 
         }

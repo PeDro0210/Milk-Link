@@ -1,0 +1,86 @@
+name: build-and-deploy-tarball
+
+
+on:
+  push:
+    branches: ["master"]
+
+
+jobs:
+  build-and-deploy-tarball:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: setup for docker building tools
+        uses: docker/setup-buildx-action@v3
+
+      - name: install utilities
+        run: |
+          sudo apt-get install docker-compose
+      - name: create .env for remote
+        run: |
+          cat > .env <<EOF
+          BACKEND_PORT=${{ secrets.BACKEND_PORT }}
+          WEBVIEW_PORT=${{ secrets.WEBVIEW_PORT }}
+          VITE_BACKEND_URL=${{ secrets.VITE_BACKEND_URL }}
+          BACKEND_HOST=${{ secrets.BACKEND_HOST }}
+          WEBVIEW_URL=${{ secrets.WEBVIEW_URL }}
+          EOF
+
+      - name: build images
+        run: |
+          docker-compose -f building.yml build
+
+      - name: save image
+        run: |
+          mkdir images
+          docker save milk-link_backend:latest milk-link_webview:latest > ./images/images.tar
+      
+      - name: copy tars to VPS
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          source: "./images/*, deploy.yml, ./milk-webview/public/milk_icon.png"
+          target: "/home/${{ secrets.VPS_USER }}/milk-folio/"
+          overwrite: true
+          debug: true 
+
+      - name: setting up key for remote shell from runner
+        run: |
+             mkdir ~/.keys
+             touch ~/.keys/vps_key.pem
+             echo "${{secrets.VPS_SSH_KEY}}" >> ~/.keys/vps_key.pem &&  chmod 400 ~/.keys/vps_key.pem 
+             cat ~/.keys/vps_key.pem
+
+      - name: setting up .env on 
+        run: |
+          ssh -i ~/.keys/vps_key.pem -o StrictHostKeyChecking=no  ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
+            cd ~/milk-link
+
+            echo "BACKEND_PORT=${{ secrets.BACKEND_PORT }}
+          WEBVIEW_PORT=${{ secrets.WEBVIEW_PORT }}
+          VITE_BACKEND_URL=${{ secrets.VITE_BACKEND_URL }}
+          BACKEND_HOST=${{ secrets.BACKEND_HOST }}
+          WEBVIEW_URL=${{ secrets.WEBVIEW_URL }}" | cat > .env
+
+          EOF
+
+      - name: copying needed files and run compose
+        run: |
+          ssh -i ~/.keys/vps_key.pem -o StrictHostKeyChecking=no  ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
+            cd ~/milk-link
+
+            mv ./milk-webview/public/milk_icon.png ./public/milk_icon.png
+
+            rm ./milk-webview/public/milk_icon.png
+
+            sudo docker load < images/images.tar
+            sudo docker-compose -f deploy.yml down
+            sudo docker-compose -f deploy.yml up --build -d
+          EOF
+

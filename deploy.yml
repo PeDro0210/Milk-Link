@@ -1,22 +1,16 @@
 services:
   backend:
-    build: ./Milk-Backend
+    image: milk-link_backend:latest
     ports:
-      - "5000:5000"
+      - "${BACKEND_PORT}:${BACKEND_PORT}"
     env_file:
-      - env_variables/milk-backend/.env
-
+      - .env
   webview:
-    build: ./Milk-WebView
+    image: milk-link_webview:latest
     ports:
-      #TODO: Before deploying, do the port fowarding
-      - "5173:5173"
-    env_file:
-      #I didn't find a practical way of symlinking the env_variables dir while in the container
-      - Milk-WebView/.env
+      - "${WEBVIEW_PORT}:5174"
     depends_on:
       - backend
-
   redis:
     image: redis/redis-stack-server
     # I'll explain each one of this arguments:
@@ -30,15 +24,12 @@ services:
       - -c
       - redis-server --requirepass "$${REDIS_PASSCODE:?1234}" --loadmodule /opt/redis-stack/lib/redisearch.so --loadmodule /opt/redis-stack/lib/rejson.so --appendonly yes --dir /data --dbfilename dump.rdb
     ports:
-      - "6379:6379"
+      - "${REDIS_PORT}:${REDIS_PORT}"
     volumes:
       - db:/data
     env_file:
-      - env_variables/redis/.env
+      - .env
 
-networks:
-  mynetwork:
-    driver: bridge
-  
 volumes:
   db:
+
