@@ -2,10 +2,10 @@ use envconfig::Envconfig;
 
 #[derive(Envconfig)]
 pub struct Env {
-    #[envconfig(from = "HOST")]
+    #[envconfig(from = "BACKEND_HOST")]
     pub host: String,
 
-    #[envconfig(from = "PORT")]
+    #[envconfig(from = "BACKEND_PORT")]
     pub port: u16,
 
     #[envconfig(from = "WEBVIEW_URL")]
