@@ -67,8 +67,10 @@ jobs:
           VITE_BACKEND_URL=${{ secrets.VITE_BACKEND_URL }}
           BACKEND_HOST=${{ secrets.BACKEND_HOST }}
           WEBVIEW_URL=${{ secrets.WEBVIEW_URL }}
+
           REDIS_PORT=${{ secrets.REDIS_PORT }}
           REDIS_PASSCODE=${{ secrets.REDIS_PASSCODE }}" | cat > .env
+          REDIS_URL=${{ secrets.REDIS_URL }}
 
           EOF
 
