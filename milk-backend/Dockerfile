@@ -23,7 +23,7 @@ FROM debian:bullseye-slim AS final
 
 COPY --from=build /bin/server /bin/
 
-EXPOSE 5000
+EXPOSE 5924
 
 CMD ["/bin/server"]
 
