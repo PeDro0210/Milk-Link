@@ -8,7 +8,7 @@ services:
   webview:
     image: milk-link_webview:latest
     ports:
-      - "${WEBVIEW_PORT}:5174"
+      - "${WEBVIEW_PORT}:{WEBVIEW_PORT}"
     depends_on:
       - backend
   redis:

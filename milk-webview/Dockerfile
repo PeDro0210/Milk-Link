@@ -21,6 +21,6 @@ FROM nginx
 COPY --from=build /Milk-WebView-dir/dist /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/nginx.conf
 
-EXPOSE 5173/tcp
+EXPOSE 5174/tcp
 
 CMD ["nginx", "-g", "daemon off;"]
