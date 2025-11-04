@@ -69,8 +69,9 @@ jobs:
           WEBVIEW_URL=${{ secrets.WEBVIEW_URL }}
 
           REDIS_PORT=${{ secrets.REDIS_PORT }}
-          REDIS_PASSCODE=${{ secrets.REDIS_PASSCODE }}" | cat > .env
+          REDIS_PASSCODE=${{ secrets.REDIS_PASSCODE }}
           REDIS_URL=${{ secrets.REDIS_URL }}
+          " | cat > .env
 
           EOF
 
