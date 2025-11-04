@@ -46,7 +46,7 @@ jobs:
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
           source: "./images/*, deploy.yml, ./milk-webview/public/milk_icon.png"
-          target: "/home/${{ secrets.VPS_USER }}/milk-folio/"
+          target: "/home/${{ secrets.VPS_USER }}/milk-link/"
           overwrite: true
           debug: true 
 
