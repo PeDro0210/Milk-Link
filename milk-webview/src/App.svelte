@@ -38,9 +38,11 @@
     <MilkLoadingScreen />
   {/if}
 
-  <main>
-    <VaporwaveDesktop />
-  </main>
+  {#if window_state.window_width > 700}
+    <main>
+      <VaporwaveDesktop />
+    </main>
+  {/if}
 
   <hud>
     {#if window_state.window_width > 700}
